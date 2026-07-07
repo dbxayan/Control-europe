@@ -10,14 +10,7 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: #04060c;
-            background-image: 
-                linear-gradient(rgba(4, 6, 12, 0.9), rgba(4, 6, 12, 0.9)),
-                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08kMnm4tSBxjWwDSGg1x-59cuIyfCoNCRyYRdRu5oRvSXe8Z9AMKPhsw&s=10'),
-                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrKYtAJy5ZFox4LHYwDvOBhm3LmWiEShRA4tJAc102w&s');
-            background-position: center, 15% 20%, 85% 70%;
-            background-repeat: no-repeat, repeat, repeat;
-            background-size: cover, 120px, 120px;
-            background-attachment: fixed;
+            background-image: linear-gradient(rgba(4, 6, 12, 0.93), rgba(4, 6, 12, 0.93));
             color: #ffffff;
             min-height: 100vh;
         }
@@ -35,17 +28,7 @@
             z-index: 100;
         }
 
-        .nav-link {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.4rem 1.2rem;
-            transition: all 0.2s ease;
-        }
-
+        .nav-link { color: #64748b; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.4rem 1.2rem; transition: all 0.2s ease; }
         .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
         .nav-link:hover { color: #ffffff; }
 
@@ -66,35 +49,27 @@
             text-align: center;
         }
 
-        .hero-banner h1 {
-            font-size: 2.6rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #ffffff;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(236, 72, 153, 0.5);
-        }
+        .hero-banner h1 { font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 4px; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(236, 72, 153, 0.5); }
 
         .podium-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
-        .podium-card { background: rgba(10, 14, 26, 0.85); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem 1rem; text-align: center; backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .p-1 { border-color: #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.15); order: 2; }
+        .podium-card { background: rgba(10, 14, 26, 0.85); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem 1rem; text-align: center; backdrop-filter: blur(10px); }
+        .p-1 { border-color: #eab308; order: 2; }
         .p-2 { border-color: #cbd5e1; order: 1; }
         .p-3 { border-color: #b45309; order: 3; }
 
         .rank-num { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
-        .p-1 .rank-num { color: #eab308; text-shadow: 0 0 10px rgba(234, 179, 8, 0.3); }
+        .p-1 .rank-num { color: #eab308; }
         .p-2 .rank-num { color: #cbd5e1; }
         .p-3 .rank-num { color: #b45309; }
         .podium-name { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; }
 
         .ladder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .ladder-row { background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); }
+        .ladder-row { background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; align-items: center; }
         .ladder-rank { font-weight: 800; font-size: 1rem; color: #38bdf8; }
         .ladder-name { font-size: 0.95rem; color: #cbd5e1; }
 
         @media (max-width: 650px) {
             .podium-section { display: flex; flex-direction: column; }
-            .p-1 { order: 1; } .p-2 { order: 2; } .p-3 { order: 3; }
             .ladder-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -105,35 +80,33 @@
         <a href="ranks.html" class="nav-link active">[ Ranks (1-20) ]</a>
     </nav>
     <div class="wrapper">
-        <div class="hero-banner">
-            <h1>Player Ranks</h1>
-        </div>
+        <div class="hero-banner"><h1>Player Ranks</h1></div>
         <div class="podium-section">
-            <div class="podium-card p-2"><div class="rank-num">#2</div><div class="podium-name">PlayerTwo</div></div>
-            <div class="podium-card p-1"><div class="rank-num">#1</div><div class="podium-name">PlayerOne</div></div>
-            <div class="podium-card p-3"><div class="rank-num">#3</div><div class="podium-name">PlayerThree</div></div>
+            <div class="podium-card p-2"><div class="rank-num">#2</div><div class="podium-name">foreverpawani</div></div>
+            <div class="podium-card p-1"><div class="rank-num">#1</div><div class="podium-name">Shuljo</div></div>
+            <div class="podium-card p-3"><div class="rank-num">#3</div><div class="podium-name">mmishi</div></div>
         </div>
         <div class="ladder-grid">
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row"><span class="ladder-rank">#4</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#5</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#6</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#7</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#8</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#9</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#10</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#11</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#4</span><span class="ladder-name">mattie</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#5</span><span class="ladder-name">Percy</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#7</span><span class="ladder-name">Aion</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#8</span><span class="ladder-name">ryan</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#10</span><span class="ladder-name">poney</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#11</span><span class="ladder-name">sin</span></div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row"><span class="ladder-rank">#12</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#13</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#14</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#15</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#16</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#17</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#18</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#19</span><span class="ladder-name">PlayerName</span></div>
-                <div class="ladder-row"><span class="ladder-rank">#20</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz</span></div>
             </div>
         </div>
     </div>
