@@ -11,7 +11,7 @@
             --tier-3: #10b981;
             --tier-4: #8b5cf6;
             --tier-5: #ec4899;
-            --bg-card: rgba(13, 17, 26, 0.75);
+            --bg-card: rgba(10, 14, 26, 0.85);
             --border-glow: rgba(255, 255, 255, 0.08);
         }
 
@@ -19,23 +19,22 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: #060913;
-            /* Layering your custom diamonds and gold bars directly into the background grid */
+            background-color: #04060c;
+            /* Blends the custom diamonds and gold bars seamlessly using overlay mix-modes */
             background-image: 
+                linear-gradient(rgba(4, 6, 12, 0.9), rgba(4, 6, 12, 0.9)),
                 url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08kMnm4tSBxjWwDSGg1x-59cuIyfCoNCRyYRdRu5oRvSXe8Z9AMKPhsw&s=10'),
-                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrKYtAJy5ZFox4LHYwDvOBhm3LmWiEShRA4tJAc102w&s'),
-                radial-gradient(circle at 50% 20%, #1a1b35 0%, #060913 70%);
-            background-position: left 5% top 20%, right 8% top 60%, center center;
-            background-repeat: no-repeat, no-repeat, no-repeat;
-            background-size: 180px, 220px, cover;
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrKYtAJy5ZFox4LHYwDvOBhm3LmWiEShRA4tJAc102w&s');
+            background-position: center, 15% 20%, 85% 70%;
+            background-repeat: no-repeat, repeat, repeat;
+            background-size: cover, 120px, 120px;
             background-attachment: fixed;
             color: #ffffff;
             min-height: 100vh;
         }
 
-        /* Navigation Menu */
         .navbar {
-            background: rgba(6, 9, 19, 0.9);
+            background: rgba(4, 6, 12, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: center;
@@ -73,7 +72,6 @@
             padding: 0 1.5rem;
         }
 
-        /* Banner Header block using your exact Anime Image Asset Link */
         .hero-banner {
             width: 100%;
             height: 200px;
@@ -107,7 +105,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
-        /* Tier Boxes Grid Layout */
         .tier-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
@@ -117,7 +114,7 @@
             grid-template-columns: 180px 1fr;
             overflow: hidden;
             backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .tier-label-box {
@@ -125,70 +122,26 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             border-right: 1px solid var(--border-glow);
             padding: 1.5rem;
             text-align: center;
         }
 
-        .tier-label-box h2 {
-            font-size: 1.6rem;
-            margin: 0;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+        .tier-label-box h2 { font-size: 1.6rem; margin: 0; font-weight: 800; letter-spacing: 1px; }
+        .tier-label-box span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.4rem; color: #64748b; font-weight: 600; }
 
-        .tier-label-box span {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-top: 0.4rem;
-            color: #64748b;
-            font-weight: 600;
-        }
+        .slots-container { display: grid; grid-template-columns: repeat(3, 1fr); }
+        .slot-column { padding: 1.2rem; border-right: 1px solid rgba(255, 255, 255, 0.03); display: flex; flex-direction: column; gap: 0.6rem; }
+        .slot-column:last-child { border-right: none; }
+        .slot-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.2rem; }
+        .player-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.9rem; color: #cbd5e1; }
 
-        .slots-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .slot-column {
-            padding: 1.2rem;
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .slot-column:last-child {
-            border-right: none;
-        }
-
-        .slot-title {
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 0.2rem;
-        }
-
-        .player-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0.6rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        /* Dynamic styling matching your color profiles */
-        .t1 { border: 1px solid rgba(255, 170, 0, 0.3); box-shadow: inset 0 0 15px rgba(255, 170, 0, 0.05); } .t1 h2 { color: var(--tier-1); }
-        .t2 { border: 1px solid rgba(59, 130, 246, 0.3); } .t2 h2 { color: var(--tier-2); }
-        .t3 { border: 1px solid rgba(16, 185, 129, 0.3); } .t3 h2 { color: var(--tier-3); }
-        .t4 { border: 1px solid rgba(139, 92, 246, 0.3); } .t4 h2 { color: var(--tier-4); }
-        .t5 { border: 1px solid rgba(236, 72, 153, 0.3); } .t5 h2 { color: var(--tier-5); }
+        .t1 { border: 1px solid rgba(255, 170, 0, 0.25); } .t1 h2 { color: var(--tier-1); }
+        .t2 { border: 1px solid rgba(59, 130, 246, 0.25); } .t2 h2 { color: var(--tier-2); }
+        .t3 { border: 1px solid rgba(16, 185, 129, 0.25); } .t3 h2 { color: var(--tier-3); }
+        .t4 { border: 1px solid rgba(139, 92, 246, 0.25); } .t4 h2 { color: var(--tier-4); }
+        .t5 { border: 1px solid rgba(236, 72, 153, 0.25); } .t5 h2 { color: var(--tier-5); }
 
         @media (max-width: 800px) {
             .tier-card { grid-template-columns: 1fr; }
@@ -199,93 +152,64 @@
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <a href="index.html" class="nav-link active">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link">[ Ranks (1-20) ]</a>
     </nav>
-
     <div class="wrapper">
         <div class="hero-banner">
             <h1>Player Tiers</h1>
             <p>Official Skill Brackets</p>
         </div>
-
         <!-- TIER 1 -->
         <div class="tier-card t1">
-            <div class="tier-label-box">
-                <h2>TIER 1</h2>
-                <span>Peak Elite</span>
-            </div>
+            <div class="tier-label-box"><h2>TIER 1</h2><span>Peak Elite</span></div>
             <div class="slots-container">
                 <div class="slot-column">
                     <div class="slot-title" style="color: #ffaa00;">HIGH</div>
                     <div class="player-item">PlayerOne</div>
                     <div class="player-item">PlayerTwo</div>
                 </div>
-                <div class="slot-column">
-                    <div class="slot-title" style="color: #cbd5e1;">MID</div>
-                    <div class="player-item">PlayerA</div>
-                </div>
-                <div class="slot-column">
-                    <div class="slot-title" style="color: #64748b;">LOW</div>
-                    <div class="player-item">Gamer1</div>
-                </div>
+                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div><div class="player-item">PlayerA</div></div>
+                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div><div class="player-item">Gamer1</div></div>
             </div>
         </div>
-
         <!-- TIER 2 -->
         <div class="tier-card t2">
-            <div class="tier-label-box">
-                <h2>TIER 2</h2>
-                <span>Advanced Elite</span>
-            </div>
+            <div class="tier-label-box"><h2>TIER 2</h2><span>Advanced Elite</span></div>
             <div class="slots-container">
                 <div class="slot-column"><div class="slot-title" style="color: #3b82f6;">HIGH</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
             </div>
         </div>
-
         <!-- TIER 3 -->
         <div class="tier-card t3">
-            <div class="tier-label-box">
-                <h2>TIER 3</h2>
-                <span>Competent</span>
-            </div>
+            <div class="tier-label-box"><h2>TIER 3</h2><span>Competent</span></div>
             <div class="slots-container">
                 <div class="slot-column"><div class="slot-title" style="color: #10b981;">HIGH</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
             </div>
         </div>
-
         <!-- TIER 4 -->
         <div class="tier-card t4">
-            <div class="tier-label-box">
-                <h2>TIER 4</h2>
-                <span>Casual</span>
-            </div>
+            <div class="tier-label-box"><h2>TIER 4</h2><span>Casual</span></div>
             <div class="slots-container">
                 <div class="slot-column"><div class="slot-title" style="color: #8b5cf6;">HIGH</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
             </div>
         </div>
-
         <!-- TIER 5 -->
         <div class="tier-card t5">
-            <div class="tier-label-box">
-                <h2>TIER 5</h2>
-                <span>Beginner</span>
-            </div>
+            <div class="tier-label-box"><h2>TIER 5</h2><span>Beginner</span></div>
             <div class="slots-container">
                 <div class="slot-column"><div class="slot-title" style="color: #ec4899;">HIGH</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
                 <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
             </div>
         </div>
-
     </div>
 </body>
 </html>
