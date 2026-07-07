@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Europe | Ranks 1-20</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: 
+                url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1924&auto=format&fit=crop') no-repeat center top / cover,
+                #0b0d12;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            background: rgba(10, 12, 18, 0.9);
+            border-bottom: 2px solid #1e2330;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: #8a92b2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .nav-link.active {
+            color: #55ffff;
+            text-shadow: 0 0 10px rgba(85, 255, 255, 0.6);
+            background: rgba(85, 255, 255, 0.05);
+            border-bottom: 2px solid #55ffff;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        /* Main Wrapper */
+        .wrapper {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Banner Header Graphic Overlay */
+        .hero-banner {
+            width: 100%;
+            height: 220px;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: url('https://i.ibb.co/L5fX0Ff/image-59323e.jpg') no-repeat center center / cover;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+        }
+
+        /* Podium Layout for Ranks #1, #2, #3 */
+        .podium-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .podium-card {
+            background: rgba(20, 24, 35, 0.85);
+            border: 2px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .p-1 { border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.15); }
+        .p-2 { border-color: #c0c0c0; }
+        .p-3 { border-color: #cd7f32; }
+
+        .rank-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+        .p-1 .rank-num { color: #ffd700; }
+        .p-2 .rank-num { color: #c0c0c0; }
+        .p-3 .rank-num { color: #cd7f32; }
+
+        .podium-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Split Ladder Grid for Ranks 4-20 */
+        .ladder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .ladder-row {
+            background: rgba(20, 24, 35, 0.85);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .ladder-rank {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #55ffff;
+        }
+
+        .ladder-name {
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 700px) {
+            .podium-section { grid-template-columns: 1fr; }
+            .ladder-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">[ Tiers ]</a>
+        <a href="ranks.html" class="nav-link active">[ Ranks (1-20) ]</a>
+    </nav>
+
+    <div class="wrapper">
+        <div class="hero-banner">
+            <h1>Player Ranks</h1>
+        </div>
+
+        <!-- Top 3 Podium -->
+        <div class="podium-section">
+            <div class="podium-card p-1">
+                <div class="rank-num">#1</div>
+                <div class="podium-name">PlayerOne</div>
+            </div>
+            <div class="podium-card p-2">
+                <div class="rank-num">#2</div>
+                <div class="podium-name">PlayerTwo</div>
+            </div>
+            <div class="podium-card p-3">
+                <div class="rank-num">#3</div>
+                <div class="podium-name">PlayerThree</div>
+            </div>
+        </div>
+
+        <!-- 4 to 20 Ladder Lists -->
+        <div class="ladder-grid">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                <div class="ladder-row"><span class="ladder-rank">#4</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#5</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#6</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#7</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#8</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#9</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#10</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#11</span><span class="ladder-name">PlayerName</span></div>
+            </div>
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                <div class="ladder-row"><span class="ladder-rank">#12</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#13</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#14</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#15</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#16</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#17</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#18</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#19</span><span class="ladder-name">PlayerName</span></div>
+                <div class="ladder-row"><span class="ladder-rank">#20</span><span class="ladder-name">PlayerName</span></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
