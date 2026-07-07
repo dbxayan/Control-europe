@@ -8,66 +8,57 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: 
-                url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1924&auto=format&fit=crop') no-repeat center top / cover,
-                #0b0d12;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #04060c;
+            background-image: 
+                linear-gradient(rgba(4, 6, 12, 0.9), rgba(4, 6, 12, 0.9)),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08kMnm4tSBxjWwDSGg1x-59cuIyfCoNCRyYRdRu5oRvSXe8Z9AMKPhsw&s=10'),
+                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrKYtAJy5ZFox4LHYwDvOBhm3LmWiEShRA4tJAc102w&s');
+            background-position: center, 15% 20%, 85% 70%;
+            background-repeat: no-repeat, repeat, repeat;
+            background-size: cover, 120px, 120px;
             background-attachment: fixed;
             color: #ffffff;
             min-height: 100vh;
         }
 
-        /* Top Navigation Bar */
         .navbar {
-            background: rgba(10, 12, 18, 0.9);
-            border-bottom: 2px solid #1e2330;
+            background: rgba(4, 6, 12, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            padding: 1rem 0;
-            backdrop-filter: blur(10px);
+            gap: 1.5rem;
+            padding: 0.9rem 0;
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .nav-link {
-            color: #8a92b2;
+            color: #64748b;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s;
-            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.4rem 1.2rem;
+            transition: all 0.2s ease;
         }
 
-        .nav-link.active {
-            color: #55ffff;
-            text-shadow: 0 0 10px rgba(85, 255, 255, 0.6);
-            background: rgba(85, 255, 255, 0.05);
-            border-bottom: 2px solid #55ffff;
-        }
+        .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
+        .nav-link:hover { color: #ffffff; }
 
-        .nav-link:hover {
-            color: #ffffff;
-        }
+        .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; }
 
-        /* Main Wrapper */
-        .wrapper {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Banner Header Graphic Overlay */
         .hero-banner {
             width: 100%;
-            height: 220px;
+            height: 200px;
             border-radius: 12px;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: url('https://i.ibb.co/L5fX0Ff/image-59323e.jpg') no-repeat center center / cover;
-            box-shadow: inset 0 0 40px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCho3iIcD0goAvy4S7xDOzaOlZq9717SJRwNdI3cvLXQ&s=10') no-repeat center center / cover;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -76,116 +67,54 @@
         }
 
         .hero-banner h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(236, 72, 153, 0.5);
         }
 
-        /* Podium Layout for Ranks #1, #2, #3 */
-        .podium-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+        .podium-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
+        .podium-card { background: rgba(10, 14, 26, 0.85); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem 1rem; text-align: center; backdrop-filter: blur(10px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .p-1 { border-color: #eab308; box-shadow: 0 0 25px rgba(234, 179, 8, 0.15); order: 2; }
+        .p-2 { border-color: #cbd5e1; order: 1; }
+        .p-3 { border-color: #b45309; order: 3; }
 
-        .podium-card {
-            background: rgba(20, 24, 35, 0.85);
-            border: 2px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
+        .rank-num { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .p-1 .rank-num { color: #eab308; text-shadow: 0 0 10px rgba(234, 179, 8, 0.3); }
+        .p-2 .rank-num { color: #cbd5e1; }
+        .p-3 .rank-num { color: #b45309; }
+        .podium-name { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; }
 
-        .p-1 { border-color: #ffd700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.15); }
-        .p-2 { border-color: #c0c0c0; }
-        .p-3 { border-color: #cd7f32; }
+        .ladder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .ladder-row { background: rgba(10, 14, 26, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.8rem 1.2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); }
+        .ladder-rank { font-weight: 800; font-size: 1rem; color: #38bdf8; }
+        .ladder-name { font-size: 0.95rem; color: #cbd5e1; }
 
-        .rank-num {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-        .p-1 .rank-num { color: #ffd700; }
-        .p-2 .rank-num { color: #c0c0c0; }
-        .p-3 .rank-num { color: #cd7f32; }
-
-        .podium-name {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        /* Split Ladder Grid for Ranks 4-20 */
-        .ladder-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .ladder-row {
-            background: rgba(20, 24, 35, 0.85);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-
-        .ladder-rank {
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: #55ffff;
-        }
-
-        .ladder-name {
-            font-size: 1rem;
-            color: #e2e8f0;
-        }
-
-        @media (max-width: 700px) {
-            .podium-section { grid-template-columns: 1fr; }
+        @media (max-width: 650px) {
+            .podium-section { display: flex; flex-direction: column; }
+            .p-1 { order: 1; } .p-2 { order: 2; } .p-3 { order: 3; }
             .ladder-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
     <nav class="navbar">
         <a href="index.html" class="nav-link">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link active">[ Ranks (1-20) ]</a>
     </nav>
-
     <div class="wrapper">
         <div class="hero-banner">
             <h1>Player Ranks</h1>
         </div>
-
-        <!-- Top 3 Podium -->
         <div class="podium-section">
-            <div class="podium-card p-1">
-                <div class="rank-num">#1</div>
-                <div class="podium-name">PlayerOne</div>
-            </div>
-            <div class="podium-card p-2">
-                <div class="rank-num">#2</div>
-                <div class="podium-name">PlayerTwo</div>
-            </div>
-            <div class="podium-card p-3">
-                <div class="rank-num">#3</div>
-                <div class="podium-name">PlayerThree</div>
-            </div>
+            <div class="podium-card p-2"><div class="rank-num">#2</div><div class="podium-name">PlayerTwo</div></div>
+            <div class="podium-card p-1"><div class="rank-num">#1</div><div class="podium-name">PlayerOne</div></div>
+            <div class="podium-card p-3"><div class="rank-num">#3</div><div class="podium-name">PlayerThree</div></div>
         </div>
-
-        <!-- 4 to 20 Ladder Lists -->
         <div class="ladder-grid">
-            <!-- Left Column -->
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
                 <div class="ladder-row"><span class="ladder-rank">#4</span><span class="ladder-name">PlayerName</span></div>
                 <div class="ladder-row"><span class="ladder-rank">#5</span><span class="ladder-name">PlayerName</span></div>
                 <div class="ladder-row"><span class="ladder-rank">#6</span><span class="ladder-name">PlayerName</span></div>
@@ -195,8 +124,7 @@
                 <div class="ladder-row"><span class="ladder-rank">#10</span><span class="ladder-name">PlayerName</span></div>
                 <div class="ladder-row"><span class="ladder-rank">#11</span><span class="ladder-name">PlayerName</span></div>
             </div>
-            <!-- Right Column -->
-            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
                 <div class="ladder-row"><span class="ladder-rank">#12</span><span class="ladder-name">PlayerName</span></div>
                 <div class="ladder-row"><span class="ladder-rank">#13</span><span class="ladder-name">PlayerName</span></div>
                 <div class="ladder-row"><span class="ladder-rank">#14</span><span class="ladder-name">PlayerName</span></div>
@@ -209,6 +137,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>
