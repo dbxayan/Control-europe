@@ -16,6 +16,29 @@
             overflow-x: hidden;
         }
 
+        /* --- Background Floating Skins --- */
+        .bg-skin-diamond {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            width: 200px;
+            max-width: 25vw;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .bg-skin-gold {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            max-width: 25vw;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
         .navbar {
             background: rgba(4, 6, 12, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -42,13 +65,11 @@
             animation: introReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Staggered load delays so they cascade smoothly */
         .hero-banner { animation-delay: 0.1s; }
         .p-2 { animation-delay: 0.25s; }
         .p-1 { animation-delay: 0.35s; }
         .p-3 { animation-delay: 0.45s; }
         
-        /* Delays for the list rows */
         .ladder-grid div:nth-child(1) .ladder-row:nth-child(1) { animation-delay: 0.5s; }
         .ladder-grid div:nth-child(1) .ladder-row:nth-child(2) { animation-delay: 0.55s; }
         .ladder-grid div:nth-child(1) .ladder-row:nth-child(3) { animation-delay: 0.6s; }
@@ -171,6 +192,10 @@
     </style>
 </head>
 <body>
+    <!-- Floating Background Skin Images -->
+    <img src="diamond.gif" class="bg-skin-diamond" alt="Diamond Skin Artwork">
+    <img src="gold.gif" class="bg-skin-gold" alt="Gold Skin Artwork">
+
     <nav class="navbar">
         <a href="index.html" class="nav-link">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link active">[ Ranks (1-20) ]</a>
@@ -178,7 +203,6 @@
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Ranks</h1></div>
         <div class="podium-section">
-            <!-- #2 Podium Card -->
             <div class="podium-card p-2" onclick="handleInteraction(event)">
                 <div class="podium-bg" style="background-image: url('second.jpg');"></div>
                 <div class="podium-content">
@@ -186,8 +210,6 @@
                     <div class="podium-name">foreverpawani</div>
                 </div>
             </div>
-            
-            <!-- #1 Podium Card -->
             <div class="podium-card p-1" onclick="handleInteraction(event)">
                 <div class="podium-bg" style="background-image: url('first.jpg');"></div>
                 <div class="podium-content">
@@ -195,8 +217,6 @@
                     <div class="podium-name">Shuljo</div>
                 </div>
             </div>
-            
-            <!-- #3 Podium Card -->
             <div class="podium-card p-3" onclick="handleInteraction(event)">
                 <div class="podium-bg" style="background-image: url('third.jpg');"></div>
                 <div class="podium-content">
@@ -242,17 +262,14 @@
             }
         }
 
-        // Cinematic Entry Swoosh Sound
         function playSwooshSound() {
             try {
                 initAudio();
-
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 const filter = audioCtx.createBiquadFilter();
 
                 osc.type = 'triangle';
-                // Starts low, swooshes high, drops out smoothly
                 osc.frequency.setValueAtTime(80, audioCtx.currentTime);
                 osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
                 osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
@@ -263,8 +280,8 @@
                 filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
 
                 gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15); // Fade in fast
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6); // Long fade out
+                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
 
                 osc.connect(filter);
                 filter.connect(gain);
@@ -277,7 +294,6 @@
             }
         }
 
-        // PC Hover Tick Sound
         function playPopSound() {
             try {
                 initAudio();
@@ -307,16 +323,12 @@
             }
         }
 
-        // Listeners for PC hovers
         document.querySelectorAll('.podium-card, .ladder-row').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 playPopSound();
             });
         });
 
-        // Trigger swoosh on page load!
-        // Note: Modern browsers require a click/tap anywhere on the screen first 
-        // to unmute page-load media, but it will fire instantly on transitions.
         window.addEventListener('DOMContentLoaded', () => {
             playSwooshSound();
         });
