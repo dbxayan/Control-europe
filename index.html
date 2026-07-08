@@ -29,30 +29,44 @@
             z-index: 100;
         }
 
-        .nav-link { color: #64748b; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.4rem 1.2rem; transition: all 0.2s ease; }
+        .nav-link { 
+            color: #64748b; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            padding: 0.4rem 1.2rem; 
+            transition: all 0.2s ease; 
+        }
         .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
         .nav-link:hover { color: #ffffff; }
 
         .wrapper { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
 
-        /* --- Intro Animation States (Now Auto-Triggered on Load) --- */
+        /* --- Fixed Pure CSS Animation (No JS Required to Visible) --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .hero-banner, .tier-block {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease;
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
 
-        body.revealed .hero-banner, body.revealed .tier-block {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-banner { transition-delay: 0.1s; }
-        .tier-block:nth-child(1) { transition-delay: 0.2s; }
-        .tier-block:nth-child(2) { transition-delay: 0.3s; }
-        .tier-block:nth-child(3) { transition-delay: 0.4s; }
-        .tier-block:nth-child(4) { transition-delay: 0.5s; }
-        .tier-block:nth-child(5) { transition-delay: 0.6s; }
+        .hero-banner { animation-delay: 0.05s; }
+        .tier-block:nth-child(1) { animation-delay: 0.1s; }
+        .tier-block:nth-child(2) { animation-delay: 0.15s; }
+        .tier-block:nth-child(3) { animation-delay: 0.2s; }
+        .tier-block:nth-child(4) { animation-delay: 0.25s; }
+        .tier-block:nth-child(5) { animation-delay: 0.3s; }
 
         .hero-banner {
             width: 100%;
@@ -67,7 +81,14 @@
             align-items: center;
         }
 
-        .hero-banner h1 { font-size: 2.4rem; margin: 0; text-transform: uppercase; letter-spacing: 4px; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.4); }
+        .hero-banner h1 { 
+            font-size: 2.4rem; 
+            margin: 0; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            color: #ffffff; 
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.4); 
+        }
 
         .tier-container {
             display: flex;
@@ -84,7 +105,6 @@
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: relative;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .tier-block:hover {
@@ -107,7 +127,7 @@
 
         /* --- Custom Flame Scaling Animations --- */
         @keyframes flamePulseGold {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #eab308); }
+            0%, 100 { transform: scale(1); filter: drop-shadow(0 0 2px #eab308); }
             50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #f59e0b); }
         }
         @keyframes flamePulseCrimson {
@@ -119,9 +139,9 @@
             50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #06b6d4); }
         }
 
-        .flame-icon-t1 { animation: flamePulseGold 1.5s infinite ease-in-out; }
-        .flame-icon-t2 { animation: flamePulseCrimson 1.4s infinite ease-in-out; }
-        .flame-icon-t3 { animation: flamePulseCyan 1.3s infinite ease-in-out; }
+        .flame-icon-t1 { animation: flamePulseGold 1.5s infinite ease-in-out; display: inline-block; }
+        .flame-icon-t2 { animation: flamePulseCrimson 1.4s infinite ease-in-out; display: inline-block; }
+        .flame-icon-t3 { animation: flamePulseCyan 1.3s infinite ease-in-out; display: inline-block; }
 
         /* Tier 1 Premium Styling */
         @keyframes goldShimmer {
@@ -149,6 +169,7 @@
         }
 
         /* Tier 2 Styling */
+        .tier-block:nth-child(2) { border-left: 4px solid #f43f5e; }
         .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; border-color: rgba(225, 29, 72, 0.2); }
         .tier-block:nth-child(2):hover {
             border-color: rgba(244, 63, 94, 0.4);
@@ -157,6 +178,7 @@
         .tier-block:nth-child(2):hover .t2-header { text-shadow: 0 0 12px rgba(244, 63, 94, 0.6); }
 
         /* Tier 3 Styling */
+        .tier-block:nth-child(3) { border-left: 4px solid #22d3ee; }
         .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
         .tier-block:nth-child(3):hover {
             border-color: rgba(34, 211, 238, 0.4);
@@ -165,6 +187,7 @@
         .tier-block:nth-child(3):hover .t3-header { text-shadow: 0 0 12px rgba(34, 211, 238, 0.6); }
 
         /* Tier 4 Styling */
+        .tier-block:nth-child(4) { border-left: 4px solid #8b5cf6; }
         .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; border-color: rgba(139, 92, 246, 0.2); }
         .tier-block:nth-child(4):hover {
             border-color: rgba(167, 139, 250, 0.3);
@@ -173,6 +196,7 @@
         .tier-block:nth-child(4):hover .t4-header { text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
 
         /* Tier 5 Styling */
+        .tier-block:nth-child(5) { border-left: 4px solid #64748b; }
         .t5-header { background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); color: #94a3b8; border-color: rgba(100, 116, 139, 0.25); }
         .tier-block:nth-child(5):hover {
             border-color: rgba(255, 255, 255, 0.15);
@@ -241,7 +265,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        /* Hover glows tied directly to their respective parent tier tiers */
         .tier-block:nth-child(1) .player-tag:hover { border-color: #eab308; box-shadow: 0 0 10px rgba(234, 179, 8, 0.25); }
         .tier-block:nth-child(2) .player-tag:hover { border-color: #f43f5e; box-shadow: 0 0 10px rgba(244, 63, 94, 0.25); }
         .tier-block:nth-child(3) .player-tag:hover { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.25); }
@@ -444,4 +467,87 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔽 Low 5</div>
                     <div class="player-pool">
-                        <div class="player-
+                        <div class="player-tag">Orange</div>
+                        <div class="player-tag">luwai</div>
+                        <div class="player-tag">pibble</div>
+                        <div class="player-tag">mrpibbidy</div>
+                        <div class="player-tag">phone</div>
+                        <div class="player-tag">raga</div>
+                        <div class="player-tag">flande</div>
+                        <div class="player-tag">4litooo</div>
+                        <div class="player-tag">power</div>
+                        <div class="player-tag">flamey</div>
+                        <div class="player-tag">hudi</div>
+                        <div class="player-tag">unvel</div>
+                        <div class="player-tag">panos</div>
+                        <div class="player-tag">ginglala</div>
+                        <div class="player-tag">david</div>
+                        <div class="player-tag">olinkian</div>
+                        <div class="player-tag">Rgpm</div>
+                        <div class="player-tag">theo</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playPopSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(540, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.04);
+                
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch(e) {
+                console.log("Audio failed to run");
+            }
+        }
+
+        // Add Hover Audio listeners and physical hardware vibration signals
+        document.querySelectorAll('.player-tag').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                initAudio(); 
+                if (audioCtx) {
+                    playPopSound();
+                }
+                if (navigator.vibrate) {
+                    navigator.vibrate(12);
+                }
+            });
+            
+            item.addEventListener('touchstart', () => {
+                initAudio();
+                if (audioCtx) {
+                    playPopSound();
+                }
+                if (navigator.vibrate) {
+                    navigator.vibrate(15);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
