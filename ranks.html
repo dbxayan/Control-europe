@@ -54,6 +54,7 @@
         .podium-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
         
         .podium-card { 
+            position: relative;
             background: rgba(10, 14, 26, 0.85); 
             border: 1px solid rgba(255,255,255,0.06); 
             border-radius: 12px; 
@@ -62,8 +63,26 @@
             backdrop-filter: blur(10px);
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
+            overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
+        
+        .podium-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.20; 
+            z-index: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        .podium-card:hover .podium-bg { opacity: 0.35; }
+        .podium-content { position: relative; z-index: 2; }
+
         .podium-card:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
@@ -118,43 +137,105 @@
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Ranks</h1></div>
         <div class="podium-section">
-            <div class="podium-card p-2" onclick="triggerHaptic()"><div class="rank-num">#2</div><div class="podium-name">foreverpawani</div></div>
-            <div class="podium-card p-1" onclick="triggerHaptic()"><div class="rank-num">#1</div><div class="podium-name">Shuljo</div></div>
-            <div class="podium-card p-3" onclick="triggerHaptic()"><div class="rank-num">#3</div><div class="podium-name">mmishi</div></div>
+            <!-- #2 Podium Card -->
+            <div class="podium-card p-2" onclick="handleInteraction(event)">
+                <div class="podium-bg" style="background-image: url('second.jpg');"></div>
+                <div class="podium-content">
+                    <div class="rank-num">#2</div>
+                    <div class="podium-name">foreverpawani</div>
+                </div>
+            </div>
+            
+            <!-- #1 Podium Card -->
+            <div class="podium-card p-1" onclick="handleInteraction(event)">
+                <div class="podium-bg" style="background-image: url('first.jpg');"></div>
+                <div class="podium-content">
+                    <div class="rank-num">#1</div>
+                    <div class="podium-name">Shuljo</div>
+                </div>
+            </div>
+            
+            <!-- #3 Podium Card -->
+            <div class="podium-card p-3" onclick="handleInteraction(event)">
+                <div class="podium-bg" style="background-image: url('third.jpg');"></div>
+                <div class="podium-content">
+                    <div class="rank-num">#3</div>
+                    <div class="podium-name">mmishi</div>
+                </div>
+            </div>
         </div>
         <div class="ladder-grid">
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#4</span><span class="ladder-name">mattie</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#5</span><span class="ladder-name">Percy</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#7</span><span class="ladder-name">Aion</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#8</span><span class="ladder-name">ryan</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#10</span><span class="ladder-name">poney</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#11</span><span class="ladder-name">sin</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#4</span><span class="ladder-name">mattie</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#5</span><span class="ladder-name">Percy</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#7</span><span class="ladder-name">Aion</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#8</span><span class="ladder-name">ryan</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#10</span><span class="ladder-name">poney</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#11</span><span class="ladder-name">sin</span></div>
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
-                <div class="ladder-row" onclick="triggerHaptic()"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
+                <div class="ladder-row" onclick="playPop()"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz</span></div>
             </div>
         </div>
     </div>
 
     <script>
-        function triggerHaptic() {
-            // Check if the phone's browser supports vibration feedback
+        let audioCtx = null;
+
+        // PC Synthetic Click Effect
+        function playPopSound() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.03);
+                
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Soft mix volume
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.03);
+            } catch(e) {
+                console.log("Audio skipped");
+            }
+        }
+
+        // Handles Taps on Mobile (Vibration)
+        function handleInteraction(e) {
             if (navigator.vibrate) {
-                // Vibrates for 15 milliseconds (a very quick, premium click feel)
                 navigator.vibrate(15);
             }
         }
+
+        // Handles Hovers on PC (Plays Sound)
+        document.querySelectorAll('.podium-card, .ladder-row').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Ensure audio triggers for actual computer mice hovers
+                playPopSound();
+            });
+        });
     </script>
 </body>
 </html>
