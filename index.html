@@ -16,39 +16,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Audio Activation Screen --- */
-        #audio-gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #04060c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        .gate-btn {
-            background: linear-gradient(135deg, #38bdf8, #0369a1);
-            color: white;
-            border: none;
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .gate-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
-        }
-
         .navbar {
             background: rgba(4, 6, 12, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -68,14 +35,14 @@
 
         .wrapper { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
 
-        /* --- Intro Animation States --- */
+        /* --- Intro Animation States (Now Auto-Triggered on Load) --- */
         .hero-banner, .tier-block {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease;
         }
 
-        .revealed .hero-banner, .revealed .tier-block {
+        body.revealed .hero-banner, body.revealed .tier-block {
             opacity: 1;
             transform: translateY(0);
         }
@@ -133,10 +100,29 @@
             letter-spacing: 2px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: text-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* --- Individual Tier Styles & Hover Effects --- */
-        
+        /* --- Custom Flame Scaling Animations --- */
+        @keyframes flamePulseGold {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #eab308); }
+            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #f59e0b); }
+        }
+        @keyframes flamePulseCrimson {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #f43f5e); }
+            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #e11d48); }
+        }
+        @keyframes flamePulseCyan {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #22d3ee); }
+            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #06b6d4); }
+        }
+
+        .flame-icon-t1 { animation: flamePulseGold 1.5s infinite ease-in-out; }
+        .flame-icon-t2 { animation: flamePulseCrimson 1.4s infinite ease-in-out; }
+        .flame-icon-t3 { animation: flamePulseCyan 1.3s infinite ease-in-out; }
+
         /* Tier 1 Premium Styling */
         @keyframes goldShimmer {
             0% { background-position: 0% 50%; }
@@ -147,9 +133,9 @@
             border-left: 4px solid #eab308;
         }
         .tier-block:nth-child(1):hover {
-            border-color: rgba(234, 179, 8, 0.4);
-            box-shadow: 0 12px 35px rgba(234, 179, 8, 0.15), 0 0 15px rgba(234, 179, 8, 0.05);
-            background-image: linear-gradient(135deg, rgba(234, 179, 8, 0.02) 0%, rgba(0,0,0,0) 100%);
+            border-color: rgba(234, 179, 8, 0.5);
+            box-shadow: 0 12px 35px rgba(234, 179, 8, 0.2), 0 0 20px rgba(234, 179, 8, 0.1);
+            background-image: linear-gradient(135deg, rgba(234, 179, 8, 0.03) 0%, rgba(0,0,0,0) 100%);
         }
         .t1-header { 
             background: linear-gradient(90deg, rgba(234, 179, 8, 0.25) 0%, rgba(234, 179, 8, 0.05) 50%, rgba(0,0,0,0) 100%); 
@@ -159,24 +145,24 @@
             border-color: rgba(234, 179, 8, 0.3); 
         }
         .tier-block:nth-child(1):hover .t1-header {
-            text-shadow: 0 0 12px rgba(234, 179, 8, 0.6);
+            text-shadow: 0 0 15px rgba(234, 179, 8, 0.7);
         }
 
         /* Tier 2 Styling */
         .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; border-color: rgba(225, 29, 72, 0.2); }
         .tier-block:nth-child(2):hover {
-            border-color: rgba(244, 63, 94, 0.3);
-            box-shadow: 0 12px 30px rgba(244, 63, 94, 0.1);
+            border-color: rgba(244, 63, 94, 0.4);
+            box-shadow: 0 12px 30px rgba(244, 63, 94, 0.15);
         }
-        .tier-block:nth-child(2):hover .t2-header { text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
+        .tier-block:nth-child(2):hover .t2-header { text-shadow: 0 0 12px rgba(244, 63, 94, 0.6); }
 
         /* Tier 3 Styling */
         .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
         .tier-block:nth-child(3):hover {
-            border-color: rgba(34, 211, 238, 0.3);
-            box-shadow: 0 12px 30px rgba(34, 211, 238, 0.1);
+            border-color: rgba(34, 211, 238, 0.4);
+            box-shadow: 0 12px 30px rgba(34, 211, 238, 0.15);
         }
-        .tier-block:nth-child(3):hover .t3-header { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+        .tier-block:nth-child(3):hover .t3-header { text-shadow: 0 0 12px rgba(34, 211, 238, 0.6); }
 
         /* Tier 4 Styling */
         .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; border-color: rgba(139, 92, 246, 0.2); }
@@ -214,11 +200,12 @@
             letter-spacing: 1px;
             display: flex;
             align-items: center;
-            padding-left: 1.5rem;
+            padding-left: 1.2rem;
             color: #94a3b8;
             border-right: 1px solid rgba(255, 255, 255, 0.03);
             flex-shrink: 0;
             transition: color 0.3s ease;
+            gap: 0.3rem;
         }
         .tier-block:hover .sub-tier-label {
             color: #cbd5e1;
@@ -276,11 +263,6 @@
 </head>
 <body>
 
-    <!-- Access Gate to Enable Browser Audio -->
-    <div id="audio-gate">
-        <button class="gate-btn" onclick="activateDashboard()">Enter Dashboard</button>
-    </div>
-
     <nav class="navbar">
         <a href="index.html" class="nav-link active">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link">[ Ranks (1-20) ]</a>
@@ -288,27 +270,27 @@
 
     <div class="wrapper" id="main-content">
         <div class="hero-banner">
-            <h1>Tier Standings</h1>
+            <h1>👑 Tier Standings 👑</h1>
         </div>
 
         <div class="tier-container">
 
             <!-- TIER 1 -->
             <div class="tier-block">
-                <div class="tier-header t1-header">Tier 1</div>
+                <div class="tier-header t1-header"><span class="flame-icon-t1">🔥</span> Tier 1 [Elite]</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">High Tier 1</div>
+                    <div class="sub-tier-label">🔼 High 1</div>
                     <div class="player-pool"><span class="empty-tag">TBD (No one)</span></div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Mid Tier 1</div>
+                    <div class="sub-tier-label">⏸️ Mid 1</div>
                     <div class="player-pool">
                         <div class="player-tag">shuljo</div>
                         <div class="player-tag">pawani</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Low Tier 1</div>
+                    <div class="sub-tier-label">🔽 Low 1</div>
                     <div class="player-pool">
                         <div class="player-tag">Mattie</div>
                         <div class="player-tag">mvv</div>
@@ -318,16 +300,16 @@
 
             <!-- TIER 2 -->
             <div class="tier-block">
-                <div class="tier-header t2-header">Tier 2</div>
+                <div class="tier-header t2-header"><span class="flame-icon-t2">💢</span> Tier 2 [Master]</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">High Tier 2</div>
+                    <div class="sub-tier-label">🔼 High 2</div>
                     <div class="player-pool">
                         <div class="player-tag">Percy</div>
                         <div class="player-tag">bonekoko</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Mid Tier 2</div>
+                    <div class="sub-tier-label">⏸️ Mid 2</div>
                     <div class="player-pool">
                         <div class="player-tag">aion</div>
                         <div class="player-tag">Ryan</div>
@@ -335,7 +317,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Low Tier 2</div>
+                    <div class="sub-tier-label">🔽 Low 2</div>
                     <div class="player-pool">
                         <div class="player-tag">sin</div>
                         <div class="player-tag">changv</div>
@@ -345,9 +327,9 @@
 
             <!-- TIER 3 -->
             <div class="tier-block">
-                <div class="tier-header t3-header">Tier 3</div>
+                <div class="tier-header t3-header"><span class="flame-icon-t3">⚡</span> Tier 3 [Expert]</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">High Tier 3</div>
+                    <div class="sub-tier-label">🔼 High 3</div>
                     <div class="player-pool">
                         <div class="player-tag">infantrator</div>
                         <div class="player-tag">sinan</div>
@@ -355,7 +337,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Mid Tier 3</div>
+                    <div class="sub-tier-label">⏸️ Mid 3</div>
                     <div class="player-pool">
                         <div class="player-tag">poney</div>
                         <div class="player-tag">bondt</div>
@@ -364,7 +346,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Low Tier 3</div>
+                    <div class="sub-tier-label">🔽 Low 3</div>
                     <div class="player-pool">
                         <div class="player-tag">Fshy</div>
                         <div class="player-tag">Ananas</div>
@@ -376,9 +358,9 @@
 
             <!-- TIER 4 -->
             <div class="tier-block">
-                <div class="tier-header t4-header">Tier 4</div>
+                <div class="tier-header t4-header">🔮 Tier 4 [Challenger]</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">High Tier 4</div>
+                    <div class="sub-tier-label">🔼 High 4</div>
                     <div class="player-pool">
                         <div class="player-tag">Adam</div>
                         <div class="player-tag">Ayden Ahmed</div>
@@ -389,7 +371,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Mid Tier 4</div>
+                    <div class="sub-tier-label">⏸️ Mid 4</div>
                     <div class="player-pool">
                         <div class="player-tag">babatunde</div>
                         <div class="player-tag">nexus</div>
@@ -404,7 +386,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Low Tier 4</div>
+                    <div class="sub-tier-label">🔽 Low 4</div>
                     <div class="player-pool">
                         <div class="player-tag">pineapple</div>
                         <div class="player-tag">mango</div>
@@ -422,9 +404,9 @@
 
             <!-- TIER 5 -->
             <div class="tier-block">
-                <div class="tier-header t5-header">Tier 5</div>
+                <div class="tier-header t5-header">🛡️ Tier 5 [Warrior]</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">High Tier 5</div>
+                    <div class="sub-tier-label">🔼 High 5</div>
                     <div class="player-pool">
                         <div class="player-tag">PWL14</div>
                         <div class="player-tag">esper</div>
@@ -441,7 +423,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Mid Tier 5</div>
+                    <div class="sub-tier-label">⏸️ Mid 5</div>
                     <div class="player-pool">
                         <div class="player-tag">pondy</div>
                         <div class="player-tag">Anton</div>
@@ -460,134 +442,6 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">Low Tier 5</div>
+                    <div class="sub-tier-label">🔽 Low 5</div>
                     <div class="player-pool">
-                        <div class="player-tag">Orange</div>
-                        <div class="player-tag">luwai</div>
-                        <div class="player-tag">pibble</div>
-                        <div class="player-tag">mrpibbidy</div>
-                        <div class="player-tag">phone</div>
-                        <div class="player-tag">raga</div>
-                        <div class="player-tag">flande</div>
-                        <div class="player-tag">4litooo</div>
-                        <div class="player-tag">power</div>
-                        <div class="player-tag">flamey</div>
-                        <div class="player-tag">hudi</div>
-                        <div class="player-tag">unvel</div>
-                        <div class="player-tag">panos</div>
-                        <div class="player-tag">ginglala</div>
-                        <div class="player-tag">david</div>
-                        <div class="player-tag">olinkian</div>
-                        <div class="player-tag">Rgpm</div>
-                        <div class="player-tag">theo</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-        let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        }
-
-        function playSwooshSound() {
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                const filter = audioCtx.createBiquadFilter();
-
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
-                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
-
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
-                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
-                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
-
-                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
-
-                osc.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.65);
-            } catch(e) {
-                console.log("Audio failed to run");
-            }
-        }
-
-        function playPopSound() {
-            try {
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(540, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.04);
-                
-                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.04);
-            } catch(e) {
-                console.log("Audio failed to run");
-            }
-        }
-
-        function activateDashboard() {
-            initAudio();
-            
-            // Hide the blocker screen smoothly
-            const gate = document.getElementById('audio-gate');
-            gate.style.opacity = '0';
-            gate.style.visibility = 'hidden';
-            
-            // Trigger animation classes
-            document.body.classList.add('revealed');
-            
-            // Fire the entrance swoosh
-            playSwooshSound();
-        }
-
-        // Add Hover Audio listeners and physical hardware vibration signals
-        document.querySelectorAll('.player-tag').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                if (audioCtx) {
-                    playPopSound();
-                }
-                if (navigator.vibrate) {
-                    navigator.vibrate(12); // Short pulse
-                }
-            });
-            
-            // Also play on mobile touch taps
-            item.addEventListener('touchstart', () => {
-                if (audioCtx) {
-                    playPopSound();
-                }
-                if (navigator.vibrate) {
-                    navigator.vibrate(15);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <div class="player-
