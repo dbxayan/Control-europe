@@ -21,19 +21,71 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 1.5rem;
             padding: 0.9rem 0;
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
         }
 
         .nav-link { color: #64748b; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.4rem 1.2rem; transition: all 0.2s ease; }
         .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
         .nav-link:hover { color: #ffffff; }
 
-        .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; }
+        .discord-btn {
+            background: #5865F2;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: scale(1.05) translateY(-1px);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.65), 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* --- Floating Side Mascots --- */
+        .side-mascot {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 260px; /* Adjusted size to fit layout nicely */
+            height: auto;
+            z-index: 10;
+            pointer-events: none; /* Prevents blocking clicks on background elements */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
+            animation: floatMascot 4s ease-in-out infinite;
+        }
+
+        .mascot-left {
+            left: 20px;
+        }
+
+        .mascot-right {
+            right: 20px;
+            animation-delay: 2s; /* Alternates floating effect */
+        }
+
+        @keyframes floatMascot {
+            0%, 100% { transform: translateY(-50%) translateY(0px); }
+            50% { transform: translateY(-50%) translateY(-15px); }
+        }
+
+        .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; position: relative; z-index: 20; }
 
         /* --- Intro Animation States --- */
         .hero-banner, .podium-card, .ladder-row {
@@ -107,7 +159,6 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* --- Premium Crowns Design --- */
         .crown {
             font-size: 2rem;
             display: block;
@@ -120,12 +171,11 @@
             50% { transform: translateY(-4px); }
         }
 
-        /* Unique Themes for Podium Banners */
         .p-1 { 
             background: linear-gradient(180deg, rgba(234, 179, 8, 0.18) 0%, rgba(10, 14, 26, 0.95) 75%);
             border-color: rgba(234, 179, 8, 0.5); 
             order: 2;
-            padding: 2.5rem 1rem; /* Slightly taller for #1 spot */
+            padding: 2.5rem 1rem;
         }
         .p-2 { 
             background: linear-gradient(180deg, rgba(203, 213, 225, 0.14) 0%, rgba(10, 14, 26, 0.95) 75%);
@@ -147,7 +197,6 @@
         .p-2 .rank-num { color: #cbd5e1; text-shadow: 0 0 12px rgba(203, 213, 225, 0.4); }
         .p-3 .rank-num { color: #b45309; text-shadow: 0 0 12px rgba(180, 83, 9, 0.5); }
         
-        /* Upgraded Visuals for Podium Names */
         .podium-name { 
             font-size: 1.25rem; 
             font-weight: 800; 
@@ -175,7 +224,6 @@
             transform: scale(1.03);
         }
 
-        /* --- Star Formatting & Badges --- */
         .stars {
             font-size: 0.85rem;
             margin-left: 0.5rem;
@@ -184,8 +232,6 @@
         }
 
         /* --- Custom Unique Row Banners --- */
-        
-        /* Rank 4-5: Master Tier (Deep Crimson Horizon + 3 Stars) */
         .r-master {
             background: linear-gradient(90deg, rgba(225, 29, 72, 0.12) 0%, rgba(10, 14, 26, 0.85) 100%);
             border: 1px solid rgba(225, 29, 72, 0.25);
@@ -198,7 +244,6 @@
         .r-master .stars { color: #f43f5e; filter: drop-shadow(0 0 4px rgba(244, 63, 94, 0.6)); }
         .r-master .ladder-name { text-shadow: 0 0 8px rgba(244, 63, 94, 0.2); }
 
-        /* Rank 6-10: Diamond Tier (Electric Cyan Horizon + 2 Stars) */
         .r-diamond {
             background: linear-gradient(90deg, rgba(6, 182, 212, 0.1) 0%, rgba(10, 14, 26, 0.85) 100%);
             border: 1px solid rgba(6, 182, 212, 0.2);
@@ -211,7 +256,6 @@
         .r-diamond .stars { color: #22d3ee; filter: drop-shadow(0 0 4px rgba(34, 211, 238, 0.6)); }
         .r-diamond .ladder-name { text-shadow: 0 0 8px rgba(34, 211, 238, 0.15); }
 
-        /* Rank 11-20: Platinum Tier (Amethyst Violet Horizon + 1 Star) */
         .r-platinum {
             background: linear-gradient(90deg, rgba(139, 92, 246, 0.08) 0%, rgba(10, 14, 26, 0.85) 100%);
             border: 1px solid rgba(139, 92, 246, 0.15);
@@ -223,12 +267,17 @@
         .r-platinum .ladder-rank { color: #a78bfa; text-shadow: 0 0 8px rgba(167, 139, 250, 0.3); }
         .r-platinum .stars { color: #a78bfa; filter: drop-shadow(0 0 4px rgba(167, 139, 250, 0.5)); }
 
-
         .ladder-rank { font-weight: 800; font-size: 1rem; }
         .ladder-name { font-size: 1.05rem; color: #cbd5e1; transition: all 0.15s ease; font-weight: 700; letter-spacing: 0.5px; }
         .ladder-row:hover .ladder-name { color: #ffffff; }
 
+        /* Hide side images and scale page on narrower viewports to prevent overcrowding */
+        @media (max-width: 1400px) {
+            .side-mascot { display: none; }
+        }
+
         @media (max-width: 650px) {
+            .navbar { gap: 0.8rem; padding: 0.7rem 0.5rem; }
             .podium-section { display: flex; flex-direction: column; gap: 2rem; }
             .p-1 { order: 1; width: 100%; box-sizing: border-box; }
             .p-2 { order: 2; width: 100%; box-sizing: border-box; }
@@ -241,11 +290,16 @@
     <nav class="navbar">
         <a href="index.html" class="nav-link">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link active">[ Ranks (1-20) ]</a>
+        <a href="https://discord.gg/vxRjx35ytT" target="_blank" class="discord-btn">💬 Discord Server</a>
     </nav>
+
+    <!-- Side Images Placed Properly Outside Main Content Grid -->
+    <img src="image_56373f.png" alt="Left Mascot" class="side-mascot mascot-left">
+    <img src="image_56375b.png" alt="Right Mascot" class="side-mascot mascot-right">
+
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Ranks</h1></div>
         
-        <!-- Top 3 Podium with Unique Crowns and Highlighted Names -->
         <div class="podium-section">
             <!-- Rank #2 Silver -->
             <div class="podium-card p-2" onclick="handleInteraction(event)">
@@ -267,22 +321,18 @@
             </div>
         </div>
 
-        <!-- Custom Star Rows Grid -->
         <div class="ladder-grid">
             <!-- Left Column -->
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <!-- Rank 4-5 (Crimson Master + 3 Stars) -->
                 <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#4</span><span class="ladder-name">mattie<span class="stars">⭐⭐⭐</span></span></div>
                 <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#5</span><span class="ladder-name">Percy<span class="stars">⭐⭐⭐</span></span></div>
                 
-                <!-- Rank 6-10 (Cyan Diamond + 2 Stars) -->
                 <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko<span class="stars">⭐⭐</span></span></div>
                 <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#7</span><span class="ladder-name">Aion<span class="stars">⭐⭐</span></span></div>
                 <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#8</span><span class="ladder-name">ryan<span class="stars">⭐⭐</span></span></div>
                 <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat<span class="stars">⭐⭐</span></span></div>
                 <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#10</span><span class="ladder-name">poney<span class="stars">⭐⭐</span></span></div>
                 
-                <!-- Rank 11-20 (Violet Platinum + 1 Star) -->
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#11</span><span class="ladder-name">sin<span class="stars">⭐</span></span></div>
             </div>
             
