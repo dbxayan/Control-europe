@@ -5,32 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Europe | Player Tiers</title>
     <style>
-        :root {
-            --tier-1: #ffaa00;
-            --tier-2: #3b82f6;
-            --tier-3: #10b981;
-            --tier-4: #8b5cf6;
-            --tier-5: #ec4899;
-            --bg-card: rgba(10, 14, 26, 0.85);
-            --border-glow: rgba(255, 255, 255, 0.08);
-        }
-
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Roboto, sans-serif;
             background-color: #04060c;
-            /* Blends the custom diamonds and gold bars seamlessly using overlay mix-modes */
-            background-image: 
-                linear-gradient(rgba(4, 6, 12, 0.9), rgba(4, 6, 12, 0.9)),
-                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS08kMnm4tSBxjWwDSGg1x-59cuIyfCoNCRyYRdRu5oRvSXe8Z9AMKPhsw&s=10'),
-                url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsrKYtAJy5ZFox4LHYwDvOBhm3LmWiEShRA4tJAc102w&s');
-            background-position: center, 15% 20%, 85% 70%;
-            background-repeat: no-repeat, repeat, repeat;
-            background-size: cover, 120px, 120px;
-            background-attachment: fixed;
+            background-image: linear-gradient(rgba(4, 6, 12, 0.93), rgba(4, 6, 12, 0.93));
             color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -46,30 +29,32 @@
             z-index: 100;
         }
 
-        .nav-link {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.4rem 1.2rem;
-            transition: all 0.2s ease;
+        .nav-link { color: #64748b; text-decoration: none; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.4rem 1.2rem; transition: all 0.2s ease; }
+        .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
+        .nav-link:hover { color: #ffffff; }
+
+        .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+        /* --- Intro Animation States --- */
+        .hero-banner, .tier-row {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: introReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .nav-link.active {
-            color: #38bdf8;
-            border-bottom: 2px solid #38bdf8;
-        }
+        /* Staggered cascading load delays */
+        .hero-banner { animation-delay: 0.1s; }
+        .tier-row:nth-child(2) { animation-delay: 0.25s; }
+        .tier-row:nth-child(3) { animation-delay: 0.35s; }
+        .tier-row:nth-child(4) { animation-delay: 0.45s; }
+        .tier-row:nth-child(5) { animation-delay: 0.55s; }
+        .tier-row:nth-child(6) { animation-delay: 0.65s; }
 
-        .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .wrapper {
-            max-width: 1000px;
-            margin: 2.5rem auto;
-            padding: 0 1.5rem;
+        @keyframes introReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-banner {
@@ -78,7 +63,7 @@
             border-radius: 12px;
             margin-bottom: 2.5rem;
             border: 1px solid rgba(56, 189, 248, 0.2);
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8qSNiN-nLrEKu_COrEyx3a3hAg1RVU0za0rhS9B_g2gl_8qWhoYHBGHw&s=10') no-repeat center center / cover;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCho3iIcD0goAvy4S7xDOzaOlZq9717SJRwNdI3cvLXQ&s=10') no-repeat center center / cover;
             box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.3);
             display: flex;
             flex-direction: column;
@@ -87,68 +72,70 @@
             text-align: center;
         }
 
-        .hero-banner h1 {
-            font-size: 2.6rem;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #ffffff;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.5);
-        }
+        .hero-banner h1 { font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 4px; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.5); }
 
-        .hero-banner p {
-            font-size: 0.95rem;
-            color: #e2e8f0;
-            margin: 0.4rem 0 0 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
+        .tier-container { display: flex; flex-direction: column; gap: 1rem; }
 
-        .tier-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            overflow: hidden;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .tier-label-box {
+        .tier-row {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: rgba(10, 14, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .tier-row:hover {
+            transform: scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .tier-badge {
+            width: 90px;
+            display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.3);
-            border-right: 1px solid var(--border-glow);
-            padding: 1.5rem;
-            text-align: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #04060c;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
 
-        .tier-label-box h2 { font-size: 1.6rem; margin: 0; font-weight: 800; letter-spacing: 1px; }
-        .tier-label-box span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 0.4rem; color: #64748b; font-weight: 600; }
-
-        .slots-container { display: grid; grid-template-columns: repeat(3, 1fr); }
-        .slot-column { padding: 1.2rem; border-right: 1px solid rgba(255, 255, 255, 0.03); display: flex; flex-direction: column; gap: 0.6rem; }
-        .slot-column:last-child { border-right: none; }
-        .slot-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 0.2rem; }
-        .player-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.9rem; color: #cbd5e1; }
-
-        .t1 { border: 1px solid rgba(255, 170, 0, 0.25); } .t1 h2 { color: var(--tier-1); }
-        .t2 { border: 1px solid rgba(59, 130, 246, 0.25); } .t2 h2 { color: var(--tier-2); }
-        .t3 { border: 1px solid rgba(16, 185, 129, 0.25); } .t3 h2 { color: var(--tier-3); }
-        .t4 { border: 1px solid rgba(139, 92, 246, 0.25); } .t4 h2 { color: var(--tier-4); }
-        .t5 { border: 1px solid rgba(236, 72, 153, 0.25); } .t5 h2 { color: var(--tier-5); }
-
-        @media (max-width: 800px) {
-            .tier-card { grid-template-columns: 1fr; }
-            .tier-label-box { border-right: none; border-bottom: 1px solid var(--border-glow); }
-            .slots-container { grid-template-columns: 1fr; }
-            .slot-column { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03); }
+        .tier-players {
+            flex: 1;
+            padding: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.4);
         }
+
+        .player-tag {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.4rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.15s ease;
+        }
+
+        .tier-row:hover .player-tag {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tier Theme Colors */
+        .t-s { background: linear-gradient(135deg, #f43f5e, #be123c); }
+        .t-a { background: linear-gradient(135deg, #fb923c, #c2410c); }
+        .t-b { background: linear-gradient(135deg, #eab308, #a16207); }
+        .t-c { background: linear-gradient(135deg, #a855f7, #6b21a8); }
+        .t-d { background: linear-gradient(135deg, #64748b, #334155); }
     </style>
 </head>
 <body>
@@ -157,59 +144,147 @@
         <a href="ranks.html" class="nav-link">[ Ranks (1-20) ]</a>
     </nav>
     <div class="wrapper">
-        <div class="hero-banner">
-            <h1>Player Tiers</h1>
-            <p>Official Skill Brackets</p>
-        </div>
-        <!-- TIER 1 -->
-        <div class="tier-card t1">
-            <div class="tier-label-box"><h2>TIER 1</h2><span>Peak Elite</span></div>
-            <div class="slots-container">
-                <div class="slot-column">
-                    <div class="slot-title" style="color: #ffaa00;">HIGH</div>
-                    <div class="player-item">PlayerOne</div>
-                    <div class="player-item">PlayerTwo</div>
+        <div class="hero-banner"><h1>Player Tiers</h1></div>
+        <div class="tier-container">
+            <!-- S Tier -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-s">S</div>
+                <div class="tier-players">
+                    <span class="player-tag">Shuljo</span>
+                    <span class="player-tag">foreverpawani</span>
+                    <span class="player-tag">mmishi</span>
                 </div>
-                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div><div class="player-item">PlayerA</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div><div class="player-item">Gamer1</div></div>
             </div>
-        </div>
-        <!-- TIER 2 -->
-        <div class="tier-card t2">
-            <div class="tier-label-box"><h2>TIER 2</h2><span>Advanced Elite</span></div>
-            <div class="slots-container">
-                <div class="slot-column"><div class="slot-title" style="color: #3b82f6;">HIGH</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
+            <!-- A Tier -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-a">A</div>
+                <div class="tier-players">
+                    <span class="player-tag">mattie</span>
+                    <span class="player-tag">Percy</span>
+                    <span class="player-tag">Bonekoko</span>
+                </div>
             </div>
-        </div>
-        <!-- TIER 3 -->
-        <div class="tier-card t3">
-            <div class="tier-label-box"><h2>TIER 3</h2><span>Competent</span></div>
-            <div class="slots-container">
-                <div class="slot-column"><div class="slot-title" style="color: #10b981;">HIGH</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
+            <!-- B Tier -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-b">B</div>
+                <div class="tier-players">
+                    <span class="player-tag">Aion</span>
+                    <span class="player-tag">ryan</span>
+                    <span class="player-tag">rastaclat</span>
+                    <span class="player-tag">poney</span>
+                </div>
             </div>
-        </div>
-        <!-- TIER 4 -->
-        <div class="tier-card t4">
-            <div class="tier-label-box"><h2>TIER 4</h2><span>Casual</span></div>
-            <div class="slots-container">
-                <div class="slot-column"><div class="slot-title" style="color: #8b5cf6;">HIGH</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
+            <!-- C Tier -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-c">C</div>
+                <div class="tier-players">
+                    <span class="player-tag">sin</span>
+                    <span class="player-tag">Bondt</span>
+                    <span class="player-tag">Sinan</span>
+                    <span class="player-tag">Ananas</span>
+                </div>
             </div>
-        </div>
-        <!-- TIER 5 -->
-        <div class="tier-card t5">
-            <div class="tier-label-box"><h2>TIER 5</h2><span>Beginner</span></div>
-            <div class="slots-container">
-                <div class="slot-column"><div class="slot-title" style="color: #ec4899;">HIGH</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #cbd5e1;">MID</div></div>
-                <div class="slot-column"><div class="slot-title" style="color: #64748b;">LOW</div></div>
+            <!-- D Tier -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-d">D</div>
+                <div class="tier-players">
+                    <span class="player-tag">imesium</span>
+                    <span class="player-tag">Fshy</span>
+                    <span class="player-tag">Rimu</span>
+                    <span class="player-tag">babatunde</span>
+                    <span class="player-tag">Jayden</span>
+                    <span class="player-tag">Kolz</span>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Cinematic Entry Swoosh Sound
+        function playSwooshSound() {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
+                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.65);
+            } catch(e) {
+                console.log("Audio skipped");
+            }
+        }
+
+        // PC Hover Tick Sound
+        function playPopSound() {
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(500, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.03);
+                
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.03);
+            } catch(e) {
+                console.log("Audio skipped");
+            }
+        }
+
+        function handleInteraction(e) {
+            if (navigator.vibrate) {
+                navigator.vibrate(15);
+            }
+        }
+
+        // Listeners for PC hovers
+        document.querySelectorAll('.tier-row').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                playPopSound();
+            });
+        });
+
+        // Trigger swoosh on page load!
+        window.addEventListener('DOMContentLoaded', () => {
+            playSwooshSound();
+        });
+    </script>
 </body>
 </html>
