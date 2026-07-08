@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Europe | Player Tiers</title>
+    <title>Control Europe | Tier List</title>
     <style>
         body {
             margin: 0;
@@ -13,7 +13,6 @@
             background-image: linear-gradient(rgba(4, 6, 12, 0.93), rgba(4, 6, 12, 0.93));
             color: #ffffff;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .navbar {
@@ -33,293 +32,321 @@
         .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
         .nav-link:hover { color: #ffffff; }
 
-        .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; }
-
-        /* --- Intro Animation States --- */
-        .hero-banner, .tier-row {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: introReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Staggered cascading load delays for 15 rows */
-        .hero-banner { animation-delay: 0.05s; }
-        .tier-row:nth-child(1)  { animation-delay: 0.10s; }
-        .tier-row:nth-child(2)  { animation-delay: 0.14s; }
-        .tier-row:nth-child(3)  { animation-delay: 0.18s; }
-        .tier-row:nth-child(4)  { animation-delay: 0.22s; }
-        .tier-row:nth-child(5)  { animation-delay: 0.26s; }
-        .tier-row:nth-child(6)  { animation-delay: 0.30s; }
-        .tier-row:nth-child(7)  { animation-delay: 0.34s; }
-        .tier-row:nth-child(8)  { animation-delay: 0.38s; }
-        .tier-row:nth-child(9)  { animation-delay: 0.42s; }
-        .tier-row:nth-child(10) { animation-delay: 0.46s; }
-        .tier-row:nth-child(11) { animation-delay: 0.50s; }
-        .tier-row:nth-child(12) { animation-delay: 0.54s; }
-        .tier-row:nth-child(13) { animation-delay: 0.58s; }
-        .tier-row:nth-child(14) { animation-delay: 0.62s; }
-        .tier-row:nth-child(15) { animation-delay: 0.66s; }
-
-        @keyframes introReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .wrapper { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
 
         .hero-banner {
             width: 100%;
-            height: 200px;
+            height: 160px;
             border-radius: 12px;
             margin-bottom: 2.5rem;
             border: 1px solid rgba(56, 189, 248, 0.2);
             background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCho3iIcD0goAvy4S7xDOzaOlZq9717SJRwNdI3cvLXQ&s=10') no-repeat center center / cover;
             box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 10px 25px rgba(0,0,0,0.3);
             display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-banner h1 { font-size: 2.4rem; margin: 0; text-transform: uppercase; letter-spacing: 4px; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.4); }
+
+        /* --- Tier Structure Layout --- */
+        .tier-container {
+            display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            gap: 1.5rem;
+            margin-bottom: 5rem;
         }
 
-        .hero-banner h1 { font-size: 2.6rem; margin: 0; text-transform: uppercase; letter-spacing: 4px; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.8), 0 0 20px rgba(56, 189, 248, 0.5); }
-
-        .tier-container { display: flex; flex-direction: column; gap: 0.8rem; }
-
-        .tier-row {
-            display: flex;
-            background: rgba(10, 14, 26, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+        .tier-block {
+            background: rgba(10, 14, 26, 0.60);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
-        .tier-row:hover {
-            transform: scale(1.02);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .tier-badge {
-            width: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.05rem;
+        .tier-header {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            color: #04060c;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Tier Specific Colors */
+        .t1-header { background: linear-gradient(90deg, rgba(234, 179, 8, 0.2) 0%, rgba(0,0,0,0) 100%); color: #eab308; border-color: rgba(234, 179, 8, 0.2); }
+        .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; border-color: rgba(225, 29, 72, 0.2); }
+        .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
+        .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; border-color: rgba(139, 92, 246, 0.2); }
+        .t5-header { background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); color: #94a3b8; border-color: rgba(100, 116, 139, 0.25); }
+
+        .sub-tier-row {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            min-height: 50px;
+        }
+        .sub-tier-row:last-child { border-bottom: none; }
+
+        .sub-tier-label {
+            width: 130px;
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 700;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            padding: 1.1rem 0.5rem;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            padding-left: 1.5rem;
+            color: #94a3b8;
+            border-right: 1px solid rgba(255, 255, 255, 0.03);
+            flex-shrink: 0;
         }
 
-        .tier-players {
-            flex: 1;
-            padding: 1.1rem;
+        .player-pool {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.7rem;
+            gap: 0.6rem;
+            padding: 0.9rem 1.5rem;
             align-items: center;
-            background: rgba(15, 23, 42, 0.4);
         }
 
-        .empty-placeholder {
+        .player-tag {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 0.35rem 0.8rem;
+            border-radius: 6px;
             font-size: 0.9rem;
-            color: #334155;
-            font-style: italic;
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: #e2e8f0;
+            transition: all 0.15s ease;
+        }
+        .player-tag:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            transform: translateY(-1px);
         }
 
-        /* Balanced smooth thematic gradients for all 15 rows */
-        .t-h1 { background: linear-gradient(135deg, #ff4b72, #be123c); }
-        .t-m1 { background: linear-gradient(135deg, #ff784b, #c2410c); }
-        .t-l1 { background: linear-gradient(135deg, #f59e0b, #b45309); }
-        
-        .t-h2 { background: linear-gradient(135deg, #10b981, #047857); }
-        .t-m2 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
-        .t-l2 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-        
-        .t-h3 { background: linear-gradient(135deg, #6366f1, #4338ca); }
-        .t-m3 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-        .t-l3 { background: linear-gradient(135deg, #d946ef, #a21caf); }
-        
-        .t-h4 { background: linear-gradient(135deg, #ec4899, #be185d); }
-        .t-m4 { background: linear-gradient(135deg, #f43f5e, #9f1239); }
-        .t-l4 { background: linear-gradient(135deg, #94a3b8, #475569); }
-        
-        .t-h5 { background: linear-gradient(135deg, #64748b, #334155); }
-        .t-m5 { background: linear-gradient(135deg, #475569, #1e293b); }
-        .t-l5 { background: linear-gradient(135deg, #334155, #0f172a); color: #94a3b8 !important; }
+        .empty-tag {
+            font-style: italic;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 650px) {
+            .sub-tier-row { flex-direction: column; }
+            .sub-tier-label { width: 100%; padding: 0.5rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03); box-sizing: border-box; }
+            .player-pool { padding: 0.75rem 1rem; }
+        }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <a href="index.html" class="nav-link active">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link">[ Ranks (1-20) ]</a>
     </nav>
+
     <div class="wrapper">
-        <div class="hero-banner"><h1>Player Tiers</h1></div>
+        <div class="hero-banner">
+            <h1>Tier Standings</h1>
+        </div>
+
         <div class="tier-container">
-            
-            <!-- Tier 1 -->
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-h1">High Tier 1</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-m1">Mid Tier 1</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-l1">Low Tier 1</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
+
+            <!-- TIER 1 -->
+            <div class="tier-block">
+                <div class="tier-header t1-header">Tier 1</div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">High Tier 1</div>
+                    <div class="player-pool"><span class="empty-tag">TBD (No one)</span></div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Mid Tier 1</div>
+                    <div class="player-pool">
+                        <div class="player-tag">shuljo</div>
+                        <div class="player-tag">pawani</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Low Tier 1</div>
+                    <div class="player-pool">
+                        <div class="player-tag">Mattie</div>
+                        <div class="player-tag">mvv</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tier 2 -->
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-h2">High Tier 2</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-m2">Mid Tier 2</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-l2">Low Tier 2</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-
-            <!-- Tier 3 -->
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-h3">High Tier 3</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-m3">Mid Tier 3</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-l3">Low Tier 3</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-
-            <!-- Tier 4 -->
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-h4">High Tier 4</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-m4">Mid Tier 4</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
-            </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-l4">Low Tier 4</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
+            <!-- TIER 2 -->
+            <div class="tier-block">
+                <div class="tier-header t2-header">Tier 2</div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">High Tier 2</div>
+                    <div class="player-pool">
+                        <div class="player-tag">Percy</div>
+                        <div class="player-tag">bonekoko</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Mid Tier 2</div>
+                    <div class="player-pool">
+                        <div class="player-tag">aion</div>
+                        <div class="player-tag">Ryan</div>
+                        <div class="player-tag">rastaclat</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Low Tier 2</div>
+                    <div class="player-pool">
+                        <div class="player-tag">sin</div>
+                        <div class="player-tag">changv</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tier 5 -->
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-h5">High Tier 5</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
+            <!-- TIER 3 -->
+            <div class="tier-block">
+                <div class="tier-header t3-header">Tier 3</div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">High Tier 3</div>
+                    <div class="player-pool">
+                        <div class="player-tag">infantrator</div>
+                        <div class="player-tag">sinan</div>
+                        <div class="player-tag">inimeg</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Mid Tier 3</div>
+                    <div class="player-pool">
+                        <div class="player-tag">poney</div>
+                        <div class="player-tag">bondt</div>
+                        <div class="player-tag">imesium</div>
+                        <div class="player-tag">real flash</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Low Tier 3</div>
+                    <div class="player-pool">
+                        <div class="player-tag">Fshy</div>
+                        <div class="player-tag">Ananas</div>
+                        <div class="player-tag">Jayden</div>
+                        <div class="player-tag">kolz</div>
+                    </div>
+                </div>
             </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-m5">Mid Tier 5</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
+
+            <!-- TIER 4 -->
+            <div class="tier-block">
+                <div class="tier-header t4-header">Tier 4</div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">High Tier 4</div>
+                    <div class="player-pool">
+                        <div class="player-tag">Adam</div>
+                        <div class="player-tag">Ayden Ahmed</div>
+                        <div class="player-tag">Brit</div>
+                        <div class="player-tag">rimu</div>
+                        <div class="player-tag">nav</div>
+                        <div class="player-tag">Alexander</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Mid Tier 4</div>
+                    <div class="player-pool">
+                        <div class="player-tag">babatunde</div>
+                        <div class="player-tag">nexus</div>
+                        <div class="player-tag">milk</div>
+                        <div class="player-tag">104</div>
+                        <div class="player-tag">Wazza</div>
+                        <div class="player-tag">kinezous</div>
+                        <div class="player-tag">Xscape</div>
+                        <div class="player-tag">bricks</div>
+                        <div class="player-tag">Walq</div>
+                        <div class="player-tag">exify</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Low Tier 4</div>
+                    <div class="player-pool">
+                        <div class="player-tag">pineapple</div>
+                        <div class="player-tag">mango</div>
+                        <div class="player-tag">vini</div>
+                        <div class="player-tag">Gus</div>
+                        <div class="player-tag">raaaz</div>
+                        <div class="player-tag">floof</div>
+                        <div class="player-tag">togoso</div>
+                        <div class="player-tag">MBXD</div>
+                        <div class="player-tag">Sanji</div>
+                        <div class="player-tag">tr1plz</div>
+                    </div>
+                </div>
             </div>
-            <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-l5">Low Tier 5</div>
-                <div class="tier-players"><span class="empty-placeholder">TBD</span></div>
+
+            <!-- TIER 5 -->
+            <div class="tier-block">
+                <div class="tier-header t5-header">Tier 5</div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">High Tier 5</div>
+                    <div class="player-pool">
+                        <div class="player-tag">PWL14</div>
+                        <div class="player-tag">esper</div>
+                        <div class="player-tag">ido</div>
+                        <div class="player-tag">koloo</div>
+                        <div class="player-tag">vortex</div>
+                        <div class="player-tag">Saif</div>
+                        <div class="player-tag">Resenhamaster</div>
+                        <div class="player-tag">greed</div>
+                        <div class="player-tag">Soviet</div>
+                        <div class="player-tag">watermonkey</div>
+                        <div class="player-tag">jinsenx</div>
+                        <div class="player-tag">clearkoko</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Mid Tier 5</div>
+                    <div class="player-pool">
+                        <div class="player-tag">pondy</div>
+                        <div class="player-tag">Anton</div>
+                        <div class="player-tag">cubex</div>
+                        <div class="player-tag">Zororoblox</div>
+                        <div class="player-tag">krainy</div>
+                        <div class="player-tag">asteroid</div>
+                        <div class="player-tag">harry</div>
+                        <div class="player-tag">Idol</div>
+                        <div class="player-tag">chama</div>
+                        <div class="player-tag">Aen</div>
+                        <div class="player-tag">pigey</div>
+                        <div class="player-tag">black_death</div>
+                        <div class="player-tag">Anas</div>
+                        <div class="player-tag">jacob</div>
+                    </div>
+                </div>
+                <div class="sub-tier-row">
+                    <div class="sub-tier-label">Low Tier 5</div>
+                    <div class="player-pool">
+                        <div class="player-tag">Orange</div>
+                        <div class="player-tag">luwai</div>
+                        <div class="player-tag">pibble</div>
+                        <div class="player-tag">mrpibbidy</div>
+                        <div class="player-tag">phone</div>
+                        <div class="player-tag">raga</div>
+                        <div class="player-tag">flande</div>
+                        <div class="player-tag">4litooo</div>
+                        <div class="player-tag">power</div>
+                        <div class="player-tag">flamey</div>
+                        <div class="player-tag">hudi</div>
+                        <div class="player-tag">unvel</div>
+                        <div class="player-tag">panos</div>
+                        <div class="player-tag">ginglala</div>
+                        <div class="player-tag">david</div>
+                        <div class="player-tag">olinkian</div>
+                        <div class="player-tag">Rgpm</div>
+                        <div class="player-tag">theo</div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <script>
-        let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-        }
-
-        function playSwooshSound() {
-            try {
-                initAudio();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                const filter = audioCtx.createBiquadFilter();
-
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
-                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
-
-                filter.type = 'lowpass';
-                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
-                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
-                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
-
-                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
-
-                osc.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.65);
-            } catch(e) {
-                console.log("Audio skipped");
-            }
-        }
-
-        function playPopSound() {
-            try {
-                initAudio();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(500, audioCtx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.03);
-                
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-                
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.03);
-            } catch(e) {
-                console.log("Audio skipped");
-            }
-        }
-
-        function handleInteraction(e) {
-            if (navigator.vibrate) {
-                navigator.vibrate(15);
-            }
-        }
-
-        document.querySelectorAll('.tier-row').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                playPopSound();
-            });
-        });
-
-        window.addEventListener('DOMContentLoaded', () => {
-            playSwooshSound();
-        });
-    </script>
 </body>
 </html>
