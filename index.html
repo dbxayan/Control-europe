@@ -39,10 +39,21 @@
             padding: 0.4rem 1.2rem; 
             transition: all 0.2s ease; 
         }
-        .nav-link.active { color: #38bdf8; border-bottom: 2px solid #38bdf8; }
-        .nav-link:hover { color: #ffffff; }
 
-        .wrapper { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
+        .nav-link.active { 
+            color: #38bdf8; 
+            border-bottom: 2px solid #38bdf8; 
+        }
+
+        .nav-link:hover { 
+            color: #ffffff; 
+        }
+
+        .wrapper { 
+            max-width: 900px; 
+            margin: 2.5rem auto; 
+            padding: 0 1.5rem; 
+        }
 
         /* --- Fixed Pure CSS Animation (No JS Required to Visible) --- */
         @keyframes fadeInUp {
@@ -56,12 +67,19 @@
             }
         }
 
-        .hero-banner, .tier-block {
+        .hero-banner, 
+        .tier-block {
             animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s ease, 
+                        background-color 0.4s ease, 
+                        border-color 0.4s ease;
         }
 
-        .hero-banner { animation-delay: 0.05s; }
+        .hero-banner { 
+            animation-delay: 0.05s; 
+        }
+        
         .tier-block:nth-child(1) { animation-delay: 0.1s; }
         .tier-block:nth-child(2) { animation-delay: 0.15s; }
         .tier-block:nth-child(3) { animation-delay: 0.2s; }
@@ -123,25 +141,57 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            user-select: none;
         }
 
         /* --- Custom Flame Scaling Animations --- */
         @keyframes flamePulseGold {
-            0%, 100 { transform: scale(1); filter: drop-shadow(0 0 2px #eab308); }
-            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #f59e0b); }
-        }
-        @keyframes flamePulseCrimson {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #f43f5e); }
-            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #e11d48); }
-        }
-        @keyframes flamePulseCyan {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px #22d3ee); }
-            50% { transform: scale(1.2) translateY(-2px); filter: drop-shadow(0 0 8px #06b6d4); }
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 2px #eab308); 
+            }
+            50% { 
+                transform: scale(1.2) translateY(-2px); 
+                filter: drop-shadow(0 0 8px #f59e0b); 
+            }
         }
 
-        .flame-icon-t1 { animation: flamePulseGold 1.5s infinite ease-in-out; display: inline-block; }
-        .flame-icon-t2 { animation: flamePulseCrimson 1.4s infinite ease-in-out; display: inline-block; }
-        .flame-icon-t3 { animation: flamePulseCyan 1.3s infinite ease-in-out; display: inline-block; }
+        @keyframes flamePulseCrimson {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 2px #f43f5e); 
+            }
+            50% { 
+                transform: scale(1.2) translateY(-2px); 
+                filter: drop-shadow(0 0 8px #e11d48); 
+            }
+        }
+
+        @keyframes flamePulseCyan {
+            0%, 100% { 
+                transform: scale(1); 
+                filter: drop-shadow(0 0 2px #22d3ee); 
+            }
+            50% { 
+                transform: scale(1.2) translateY(-2px); 
+                filter: drop-shadow(0 0 8px #06b6d4); 
+            }
+        }
+
+        .flame-icon-t1 { 
+            animation: flamePulseGold 1.5s infinite ease-in-out; 
+            display: inline-block; 
+        }
+        
+        .flame-icon-t2 { 
+            animation: flamePulseCrimson 1.4s infinite ease-in-out; 
+            display: inline-block; 
+        }
+        
+        .flame-icon-t3 { 
+            animation: flamePulseCyan 1.3s infinite ease-in-out; 
+            display: inline-block; 
+        }
 
         /* Tier 1 Premium Styling */
         @keyframes goldShimmer {
@@ -149,14 +199,17 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .tier-block:nth-child(1) {
-            border-left: 4px solid #eab308;
+
+        .tier-block:nth-child(1) { 
+            border-left: 4px solid #eab308; 
         }
+
         .tier-block:nth-child(1):hover {
             border-color: rgba(234, 179, 8, 0.5);
             box-shadow: 0 12px 35px rgba(234, 179, 8, 0.2), 0 0 20px rgba(234, 179, 8, 0.1);
             background-image: linear-gradient(135deg, rgba(234, 179, 8, 0.03) 0%, rgba(0,0,0,0) 100%);
         }
+
         .t1-header { 
             background: linear-gradient(90deg, rgba(234, 179, 8, 0.25) 0%, rgba(234, 179, 8, 0.05) 50%, rgba(0,0,0,0) 100%); 
             background-size: 200% auto;
@@ -164,55 +217,106 @@
             color: #eab308; 
             border-color: rgba(234, 179, 8, 0.3); 
         }
-        .tier-block:nth-child(1):hover .t1-header {
-            text-shadow: 0 0 15px rgba(234, 179, 8, 0.7);
+
+        .tier-block:nth-child(1):hover .t1-header { 
+            text-shadow: 0 0 15px rgba(234, 179, 8, 0.7); 
         }
 
         /* Tier 2 Styling */
-        .tier-block:nth-child(2) { border-left: 4px solid #f43f5e; }
-        .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; border-color: rgba(225, 29, 72, 0.2); }
+        .tier-block:nth-child(2) { 
+            border-left: 4px solid #f43f5e; 
+        }
+
+        .t2-header { 
+            background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); 
+            color: #f43f5e; 
+            border-color: rgba(225, 29, 72, 0.2); 
+        }
+
         .tier-block:nth-child(2):hover {
             border-color: rgba(244, 63, 94, 0.4);
             box-shadow: 0 12px 30px rgba(244, 63, 94, 0.15);
         }
-        .tier-block:nth-child(2):hover .t2-header { text-shadow: 0 0 12px rgba(244, 63, 94, 0.6); }
+
+        .tier-block:nth-child(2):hover .t2-header { 
+            text-shadow: 0 0 12px rgba(244, 63, 94, 0.6); 
+        }
 
         /* Tier 3 Styling */
-        .tier-block:nth-child(3) { border-left: 4px solid #22d3ee; }
-        .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
+        .tier-block:nth-child(3) { 
+            border-left: 4px solid #22d3ee; 
+        }
+
+        .t3-header { 
+            background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); 
+            color: #22d3ee; 
+            border-color: rgba(6, 182, 212, 0.2); 
+        }
+
         .tier-block:nth-child(3):hover {
             border-color: rgba(34, 211, 238, 0.4);
             box-shadow: 0 12px 30px rgba(34, 211, 238, 0.15);
         }
-        .tier-block:nth-child(3):hover .t3-header { text-shadow: 0 0 12px rgba(34, 211, 238, 0.6); }
+
+        .tier-block:nth-child(3):hover .t3-header { 
+            text-shadow: 0 0 12px rgba(34, 211, 238, 0.6); 
+        }
 
         /* Tier 4 Styling */
-        .tier-block:nth-child(4) { border-left: 4px solid #8b5cf6; }
-        .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; border-color: rgba(139, 92, 246, 0.2); }
+        .tier-block:nth-child(4) { 
+            border-left: 4px solid #8b5cf6; 
+        }
+
+        .t4-header { 
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); 
+            color: #a78bfa; 
+            border-color: rgba(139, 92, 246, 0.2); 
+        }
+
         .tier-block:nth-child(4):hover {
             border-color: rgba(167, 139, 250, 0.3);
             box-shadow: 0 12px 30px rgba(167, 139, 250, 0.1);
         }
-        .tier-block:nth-child(4):hover .t4-header { text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
+
+        .tier-block:nth-child(4):hover .t4-header { 
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); 
+        }
 
         /* Tier 5 Styling */
-        .tier-block:nth-child(5) { border-left: 4px solid #64748b; }
-        .t5-header { background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); color: #94a3b8; border-color: rgba(100, 116, 139, 0.25); }
+        .tier-block:nth-child(5) { 
+            border-left: 4px solid #64748b; 
+        }
+
+        .t5-header { 
+            background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); 
+            color: #94a3b8; 
+            border-color: rgba(100, 116, 139, 0.25); 
+        }
+
         .tier-block:nth-child(5):hover {
             border-color: rgba(255, 255, 255, 0.15);
             box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05);
         }
-        .tier-block:nth-child(5):hover .t5-header { text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
+
+        .tier-block:nth-child(5):hover .t5-header { 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+        }
 
         .sub-tier-row {
             display: flex;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             min-height: 50px;
             transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
         }
-        .sub-tier-row:last-child { border-bottom: none; }
-        .tier-block:hover .sub-tier-row {
-            background-color: rgba(255, 255, 255, 0.005);
+
+        .sub-tier-row:last-child { 
+            border-bottom: none; 
+        }
+
+        .tier-block:hover .sub-tier-row { 
+            background-color: rgba(255, 255, 255, 0.005); 
         }
 
         .sub-tier-label {
@@ -230,9 +334,11 @@
             flex-shrink: 0;
             transition: color 0.3s ease;
             gap: 0.3rem;
+            user-select: none;
         }
-        .tier-block:hover .sub-tier-label {
-            color: #cbd5e1;
+
+        .tier-block:hover .sub-tier-label { 
+            color: #cbd5e1; 
         }
 
         .player-pool {
@@ -243,7 +349,6 @@
             align-items: center;
         }
 
-        /* --- Upgraded Animated Player Tags --- */
         .player-tag {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.07);
@@ -254,8 +359,14 @@
             color: #cbd5e1;
             letter-spacing: 0.5px;
             cursor: pointer;
-            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                        background-color 0.15s ease, 
+                        border-color 0.15s ease, 
+                        box-shadow 0.15s ease, 
+                        color 0.15s ease;
             -webkit-tap-highlight-color: transparent;
+            position: relative;
+            z-index: 5;
         }
         
         .player-tag:hover {
@@ -265,11 +376,30 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        .tier-block:nth-child(1) .player-tag:hover { border-color: #eab308; box-shadow: 0 0 10px rgba(234, 179, 8, 0.25); }
-        .tier-block:nth-child(2) .player-tag:hover { border-color: #f43f5e; box-shadow: 0 0 10px rgba(244, 63, 94, 0.25); }
-        .tier-block:nth-child(3) .player-tag:hover { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.25); }
-        .tier-block:nth-child(4) .player-tag:hover { border-color: #a78bfa; box-shadow: 0 0 10px rgba(167, 139, 250, 0.25); }
-        .tier-block:nth-child(5) .player-tag:hover { border-color: #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+        .tier-block:nth-child(1) .player-tag:hover { 
+            border-color: #eab308; 
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.25); 
+        }
+        
+        .tier-block:nth-child(2) .player-tag:hover { 
+            border-color: #f43f5e; 
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.25); 
+        }
+        
+        .tier-block:nth-child(3) .player-tag:hover { 
+            border-color: #22d3ee; 
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.25); 
+        }
+        
+        .tier-block:nth-child(4) .player-tag:hover { 
+            border-color: #a78bfa; 
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.25); 
+        }
+        
+        .tier-block:nth-child(5) .player-tag:hover { 
+            border-color: #ffffff; 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+        }
 
         .empty-tag {
             font-style: italic;
@@ -277,10 +407,32 @@
             font-size: 0.9rem;
         }
 
+        /* --- Emoji Explosion Particles Styling --- */
+        .emoji-particle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            z-index: 3;
+            user-select: none;
+            will-change: transform, opacity;
+            transition: transform 0.6s cubic-bezier(0.1, 0.8, 0.3, 1), 
+                        opacity 0.6s ease-out;
+        }
+
         @media (max-width: 650px) {
-            .sub-tier-row { flex-direction: column; }
-            .sub-tier-label { width: 100%; padding: 0.5rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03); box-sizing: border-box; }
-            .player-pool { padding: 0.75rem 1rem; }
+            .sub-tier-row { 
+                flex-direction: column; 
+            }
+            .sub-tier-label { 
+                width: 100%; 
+                padding: 0.5rem 1.5rem; 
+                border-right: none; 
+                border-bottom: 1px solid rgba(255, 255, 255, 0.03); 
+                box-sizing: border-box; 
+            }
+            .player-pool { 
+                padding: 0.75rem 1rem; 
+            }
         }
     </style>
 </head>
@@ -299,11 +451,15 @@
         <div class="tier-container">
 
             <!-- TIER 1 -->
-            <div class="tier-block">
-                <div class="tier-header t1-header"><span class="flame-icon-t1">🔥</span> Tier 1 [Elite]</div>
+            <div class="tier-block" data-emojis="👑,🔥,✨,💎,💰,🌟">
+                <div class="tier-header t1-header">
+                    <span class="flame-icon-t1">🔥</span> Tier 1
+                </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔼 High 1</div>
-                    <div class="player-pool"><span class="empty-tag">TBD (No one)</span></div>
+                    <div class="player-pool">
+                        <span class="empty-tag">TBD (No one)</span>
+                    </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">⏸️ Mid 1</div>
@@ -322,8 +478,10 @@
             </div>
 
             <!-- TIER 2 -->
-            <div class="tier-block">
-                <div class="tier-header t2-header"><span class="flame-icon-t2">💢</span> Tier 2 [Master]</div>
+            <div class="tier-block" data-emojis="💢,🩸,⚔️,💀,😡,👺">
+                <div class="tier-header t2-header">
+                    <span class="flame-icon-t2">💢</span> Tier 2
+                </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔼 High 2</div>
                     <div class="player-pool">
@@ -349,8 +507,10 @@
             </div>
 
             <!-- TIER 3 -->
-            <div class="tier-block">
-                <div class="tier-header t3-header"><span class="flame-icon-t3">⚡</span> Tier 3 [Expert]</div>
+            <div class="tier-block" data-emojis="⚡,🌀,☄️,🛸,🔋,🌐">
+                <div class="tier-header t3-header">
+                    <span class="flame-icon-t3">⚡</span> Tier 3
+                </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔼 High 3</div>
                     <div class="player-pool">
@@ -380,8 +540,8 @@
             </div>
 
             <!-- TIER 4 -->
-            <div class="tier-block">
-                <div class="tier-header t4-header">🔮 Tier 4 [Challenger]</div>
+            <div class="tier-block" data-emojis="🔮,🧬,🎭,👁️,🌌,🛸">
+                <div class="tier-header t4-header">🔮 Tier 4</div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔼 High 4</div>
                     <div class="player-pool">
@@ -426,8 +586,8 @@
             </div>
 
             <!-- TIER 5 -->
-            <div class="tier-block">
-                <div class="tier-header t5-header">🛡️ Tier 5 [Warrior]</div>
+            <div class="tier-block" data-emojis="🛡️,🪵,🧱,👣,🏹,🦾">
+                <div class="tier-header t5-header">🛡️ Tier 5</div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">🔼 High 5</div>
                     <div class="player-pool">
@@ -522,31 +682,84 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.04);
             } catch(e) {
-                console.log("Audio failed to run");
+                console.log("Audio dropped setup context");
             }
         }
 
-        // Add Hover Audio listeners and physical hardware vibration signals
+        // Dynamic Emoji Burst Engine
+        function createEmojiExplosion(e, block) {
+            const emojisString = block.getAttribute('data-emojis');
+            if (!emojisString) return;
+            const emojiPool = emojisString.split(',');
+
+            const rect = block.getBoundingClientRect();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+
+            // Support touch events tracking
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+
+            // Calculate precise coordinate offsets within container block
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            const particleCount = 12; // Dynamic density control
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'emoji-particle';
+                particle.textContent = emojiPool[Math.floor(Math.random() * emojiPool.length)];
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+
+                block.appendChild(particle);
+
+                // Math mechanics logic for multi-directional vectors
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 40 + Math.random() * 90; 
+                const targetX = Math.cos(angle) * velocity;
+                const targetY = Math.sin(angle) * velocity;
+                const rotation = (Math.random() - 0.5) * 360;
+
+                // Force micro-task layout reflow execution loop
+                requestAnimationFrame(() => {
+                    particle.style.transform = `translate(${targetX}px, ${targetY}px) rotate(${rotation}deg) scale(0.4)`;
+                    particle.style.opacity = '0';
+                });
+
+                // Clear layout trace nodes securely
+                setTimeout(() => {
+                    particle.remove();
+                }, 600);
+            }
+        }
+
+        // Global Tier Interactive Event Observers
+        document.querySelectorAll('.tier-block').forEach(block => {
+            block.addEventListener('mouseenter', (e) => {
+                createEmojiExplosion(e, block);
+            });
+
+            block.addEventListener('touchstart', (e) => {
+                createEmojiExplosion(e, block);
+            }, { passive: true });
+        });
+
+        // Add Player tags active vibration feedback loops
         document.querySelectorAll('.player-tag').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 initAudio(); 
-                if (audioCtx) {
-                    playPopSound();
-                }
-                if (navigator.vibrate) {
-                    navigator.vibrate(12);
-                }
+                if (audioCtx) playPopSound();
+                if (navigator.vibrate) navigator.vibrate(12);
             });
             
             item.addEventListener('touchstart', () => {
                 initAudio();
-                if (audioCtx) {
-                    playPopSound();
-                }
-                if (navigator.vibrate) {
-                    navigator.vibrate(15);
-                }
-            });
+                if (audioCtx) playPopSound();
+                if (navigator.vibrate) navigator.vibrate(15);
+            }, { passive: true });
         });
     </script>
 </body>
