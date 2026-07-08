@@ -16,6 +16,39 @@
             overflow-x: hidden;
         }
 
+        /* --- Audio Activation Screen --- */
+        #audio-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #04060c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .gate-btn {
+            background: linear-gradient(135deg, #38bdf8, #0369a1);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .gate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+        }
+
         .navbar {
             background: rgba(4, 6, 12, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -35,26 +68,24 @@
 
         .wrapper { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
 
-        /* --- Intro Smooth Fade Animations --- */
+        /* --- Intro Animation States --- */
         .hero-banner, .tier-block {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .revealed .hero-banner, .revealed .tier-block {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .hero-banner { animation-delay: 0.05s; }
-        .tier-block:nth-child(1) { animation-delay: 0.1s; }
-        .tier-block:nth-child(2) { animation-delay: 0.15s; }
-        .tier-block:nth-child(3) { animation-delay: 0.2s; }
-        .tier-block:nth-child(4) { animation-delay: 0.25s; }
-        .tier-block:nth-child(5) { animation-delay: 0.3s; }
+        .hero-banner { transition-delay: 0.1s; }
+        .tier-block:nth-child(1) { transition-delay: 0.2s; }
+        .tier-block:nth-child(2) { transition-delay: 0.3s; }
+        .tier-block:nth-child(3) { transition-delay: 0.4s; }
+        .tier-block:nth-child(4) { transition-delay: 0.5s; }
+        .tier-block:nth-child(5) { transition-delay: 0.6s; }
 
         .hero-banner {
             width: 100%;
@@ -74,65 +105,109 @@
         .tier-container {
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 1.5rem;
             margin-bottom: 5rem;
         }
 
-        /* --- Dynamic Tier Container Styles --- */
+        /* --- Global Tier Box Enhancements --- */
         .tier-block {
-            background: rgba(10, 14, 26, 0.55);
+            background: rgba(10, 14, 26, 0.60);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 14px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Hovering over a block highlights the whole zone */
         .tier-block:hover {
-            transform: translateY(-2px) scale(1.005);
-            background: rgba(14, 20, 38, 0.75);
+            transform: scale(1.015);
+            background-color: rgba(14, 20, 38, 0.75);
         }
 
         .tier-header {
-            padding: 0.85rem 1.5rem;
-            font-size: 1.25rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: text-shadow 0.3s ease;
         }
 
-        /* Ambient glows tailored for each block level */
-        .tier-block.t1-zone:hover { border-color: rgba(234, 179, 8, 0.3); box-shadow: 0 12px 30px rgba(234, 179, 8, 0.08); }
-        .tier-block.t2-zone:hover { border-color: rgba(244, 63, 94, 0.3); box-shadow: 0 12px 30px rgba(244, 63, 94, 0.08); }
-        .tier-block.t3-zone:hover { border-color: rgba(34, 211, 238, 0.3); box-shadow: 0 12px 30px rgba(34, 211, 238, 0.08); }
-        .tier-block.t4-zone:hover { border-color: rgba(167, 139, 250, 0.3); box-shadow: 0 12px 30px rgba(167, 139, 250, 0.08); }
-        .tier-block.t5-zone:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05); }
+        /* --- Individual Tier Styles & Hover Effects --- */
+        
+        /* Tier 1 Premium Styling */
+        @keyframes goldShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .tier-block:nth-child(1) {
+            border-left: 4px solid #eab308;
+        }
+        .tier-block:nth-child(1):hover {
+            border-color: rgba(234, 179, 8, 0.4);
+            box-shadow: 0 12px 35px rgba(234, 179, 8, 0.15), 0 0 15px rgba(234, 179, 8, 0.05);
+            background-image: linear-gradient(135deg, rgba(234, 179, 8, 0.02) 0%, rgba(0,0,0,0) 100%);
+        }
+        .t1-header { 
+            background: linear-gradient(90deg, rgba(234, 179, 8, 0.25) 0%, rgba(234, 179, 8, 0.05) 50%, rgba(0,0,0,0) 100%); 
+            background-size: 200% auto;
+            animation: goldShimmer 4s ease infinite;
+            color: #eab308; 
+            border-color: rgba(234, 179, 8, 0.3); 
+        }
+        .tier-block:nth-child(1):hover .t1-header {
+            text-shadow: 0 0 12px rgba(234, 179, 8, 0.6);
+        }
 
-        .t1-header { background: linear-gradient(90deg, rgba(234, 179, 8, 0.2) 0%, rgba(0,0,0,0) 100%); color: #eab308; }
-        .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; }
-        .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; }
-        .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; }
-        .t5-header { background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); color: #94a3b8; }
+        /* Tier 2 Styling */
+        .t2-header { background: linear-gradient(90deg, rgba(225, 29, 72, 0.2) 0%, rgba(0,0,0,0) 100%); color: #f43f5e; border-color: rgba(225, 29, 72, 0.2); }
+        .tier-block:nth-child(2):hover {
+            border-color: rgba(244, 63, 94, 0.3);
+            box-shadow: 0 12px 30px rgba(244, 63, 94, 0.1);
+        }
+        .tier-block:nth-child(2):hover .t2-header { text-shadow: 0 0 10px rgba(244, 63, 94, 0.5); }
+
+        /* Tier 3 Styling */
+        .t3-header { background: linear-gradient(90deg, rgba(6, 182, 212, 0.2) 0%, rgba(0,0,0,0) 100%); color: #22d3ee; border-color: rgba(6, 182, 212, 0.2); }
+        .tier-block:nth-child(3):hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            box-shadow: 0 12px 30px rgba(34, 211, 238, 0.1);
+        }
+        .tier-block:nth-child(3):hover .t3-header { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+
+        /* Tier 4 Styling */
+        .t4-header { background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(0,0,0,0) 100%); color: #a78bfa; border-color: rgba(139, 92, 246, 0.2); }
+        .tier-block:nth-child(4):hover {
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 12px 30px rgba(167, 139, 250, 0.1);
+        }
+        .tier-block:nth-child(4):hover .t4-header { text-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
+
+        /* Tier 5 Styling */
+        .t5-header { background: linear-gradient(90deg, rgba(100, 116, 139, 0.25) 0%, rgba(0,0,0,0) 100%); color: #94a3b8; border-color: rgba(100, 116, 139, 0.25); }
+        .tier-block:nth-child(5):hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.05);
+        }
+        .tier-block:nth-child(5):hover .t5-header { text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); }
 
         .sub-tier-row {
             display: flex;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            min-height: 55px;
-            transition: background-color 0.2s ease;
-        }
-        .sub-tier-row:hover {
-            background-color: rgba(255, 255, 255, 0.015);
+            min-height: 50px;
+            transition: background-color 0.3s ease;
         }
         .sub-tier-row:last-child { border-bottom: none; }
+        .tier-block:hover .sub-tier-row {
+            background-color: rgba(255, 255, 255, 0.005);
+        }
 
         .sub-tier-label {
-            width: 140px;
-            background: rgba(255, 255, 255, 0.01);
+            width: 130px;
+            background: rgba(255, 255, 255, 0.02);
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -143,22 +218,25 @@
             color: #94a3b8;
             border-right: 1px solid rgba(255, 255, 255, 0.03);
             flex-shrink: 0;
-            gap: 0.4rem;
+            transition: color 0.3s ease;
+        }
+        .tier-block:hover .sub-tier-label {
+            color: #cbd5e1;
         }
 
         .player-pool {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.65rem;
+            gap: 0.6rem;
             padding: 0.9rem 1.5rem;
             align-items: center;
         }
 
-        /* --- Upgraded Player Tags --- */
+        /* --- Upgraded Animated Player Tags --- */
         .player-tag {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 0.4rem 0.85rem;
+            padding: 0.35rem 0.8rem;
             border-radius: 6px;
             font-size: 0.9rem;
             font-weight: 700;
@@ -170,21 +248,18 @@
         }
         
         .player-tag:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.09);
             color: #ffffff;
-            transform: scale(1.08) translateY(-2px);
+            transform: scale(1.08) translateY(-1px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
-        .tier-block:hover .player-tag {
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .t1-zone .player-tag:hover { border-color: #eab308; box-shadow: 0 0 12px rgba(234, 179, 8, 0.35); }
-        .t2-zone .player-tag:hover { border-color: #f43f5e; box-shadow: 0 0 12px rgba(244, 63, 94, 0.35); }
-        .t3-zone .player-tag:hover { border-color: #22d3ee; box-shadow: 0 0 12px rgba(34, 211, 238, 0.35); }
-        .t4-zone .player-tag:hover { border-color: #a78bfa; box-shadow: 0 0 12px rgba(167, 139, 250, 0.35); }
-        .t5-zone .player-tag:hover { border-color: #ffffff; box-shadow: 0 0 12px rgba(255, 255, 255, 0.25); }
+        /* Hover glows tied directly to their respective parent tier tiers */
+        .tier-block:nth-child(1) .player-tag:hover { border-color: #eab308; box-shadow: 0 0 10px rgba(234, 179, 8, 0.25); }
+        .tier-block:nth-child(2) .player-tag:hover { border-color: #f43f5e; box-shadow: 0 0 10px rgba(244, 63, 94, 0.25); }
+        .tier-block:nth-child(3) .player-tag:hover { border-color: #22d3ee; box-shadow: 0 0 10px rgba(34, 211, 238, 0.25); }
+        .tier-block:nth-child(4) .player-tag:hover { border-color: #a78bfa; box-shadow: 0 0 10px rgba(167, 139, 250, 0.25); }
+        .tier-block:nth-child(5) .player-tag:hover { border-color: #ffffff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
 
         .empty-tag {
             font-style: italic;
@@ -194,12 +269,17 @@
 
         @media (max-width: 650px) {
             .sub-tier-row { flex-direction: column; }
-            .sub-tier-label { width: 100%; padding: 0.6rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03); box-sizing: border-box; }
-            .player-pool { padding: 0.8rem 1rem; }
+            .sub-tier-label { width: 100%; padding: 0.5rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.03); box-sizing: border-box; }
+            .player-pool { padding: 0.75rem 1rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Access Gate to Enable Browser Audio -->
+    <div id="audio-gate">
+        <button class="gate-btn" onclick="activateDashboard()">Enter Dashboard</button>
+    </div>
 
     <nav class="navbar">
         <a href="index.html" class="nav-link active">[ Tiers ]</a>
@@ -214,21 +294,21 @@
         <div class="tier-container">
 
             <!-- TIER 1 -->
-            <div class="tier-block t1-zone">
-                <div class="tier-header t1-header">👑 Tier 1</div>
+            <div class="tier-block">
+                <div class="tier-header t1-header">Tier 1</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔺 High T1</div>
-                    <div class="player-pool"><span class="empty-tag">⚡ TBD (No one)</span></div>
+                    <div class="sub-tier-label">High Tier 1</div>
+                    <div class="player-pool"><span class="empty-tag">TBD (No one)</span></div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔸 Mid T1</div>
+                    <div class="sub-tier-label">Mid Tier 1</div>
                     <div class="player-pool">
                         <div class="player-tag">shuljo</div>
                         <div class="player-tag">pawani</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔻 Low T1</div>
+                    <div class="sub-tier-label">Low Tier 1</div>
                     <div class="player-pool">
                         <div class="player-tag">Mattie</div>
                         <div class="player-tag">mvv</div>
@@ -237,17 +317,17 @@
             </div>
 
             <!-- TIER 2 -->
-            <div class="tier-block t2-zone">
-                <div class="tier-header t2-header">🔥 Tier 2</div>
+            <div class="tier-block">
+                <div class="tier-header t2-header">Tier 2</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔺 High T2</div>
+                    <div class="sub-tier-label">High Tier 2</div>
                     <div class="player-pool">
                         <div class="player-tag">Percy</div>
                         <div class="player-tag">bonekoko</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔸 Mid T2</div>
+                    <div class="sub-tier-label">Mid Tier 2</div>
                     <div class="player-pool">
                         <div class="player-tag">aion</div>
                         <div class="player-tag">Ryan</div>
@@ -255,7 +335,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔻 Low T2</div>
+                    <div class="sub-tier-label">Low Tier 2</div>
                     <div class="player-pool">
                         <div class="player-tag">sin</div>
                         <div class="player-tag">changv</div>
@@ -264,10 +344,10 @@
             </div>
 
             <!-- TIER 3 -->
-            <div class="tier-block t3-zone">
-                <div class="tier-header t3-header">💎 Tier 3</div>
+            <div class="tier-block">
+                <div class="tier-header t3-header">Tier 3</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔺 High T3</div>
+                    <div class="sub-tier-label">High Tier 3</div>
                     <div class="player-pool">
                         <div class="player-tag">infantrator</div>
                         <div class="player-tag">sinan</div>
@@ -275,7 +355,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔸 Mid T3</div>
+                    <div class="sub-tier-label">Mid Tier 3</div>
                     <div class="player-pool">
                         <div class="player-tag">poney</div>
                         <div class="player-tag">bondt</div>
@@ -284,7 +364,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔻 Low T3</div>
+                    <div class="sub-tier-label">Low Tier 3</div>
                     <div class="player-pool">
                         <div class="player-tag">Fshy</div>
                         <div class="player-tag">Ananas</div>
@@ -295,10 +375,10 @@
             </div>
 
             <!-- TIER 4 -->
-            <div class="tier-block t4-zone">
-                <div class="tier-header t4-header">🔮 Tier 4</div>
+            <div class="tier-block">
+                <div class="tier-header t4-header">Tier 4</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔺 High T4</div>
+                    <div class="sub-tier-label">High Tier 4</div>
                     <div class="player-pool">
                         <div class="player-tag">Adam</div>
                         <div class="player-tag">Ayden Ahmed</div>
@@ -309,7 +389,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔸 Mid T4</div>
+                    <div class="sub-tier-label">Mid Tier 4</div>
                     <div class="player-pool">
                         <div class="player-tag">babatunde</div>
                         <div class="player-tag">nexus</div>
@@ -324,7 +404,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔻 Low T4</div>
+                    <div class="sub-tier-label">Low Tier 4</div>
                     <div class="player-pool">
                         <div class="player-tag">pineapple</div>
                         <div class="player-tag">mango</div>
@@ -341,10 +421,10 @@
             </div>
 
             <!-- TIER 5 -->
-            <div class="tier-block t5-zone">
-                <div class="tier-header t5-header">⚙️ Tier 5</div>
+            <div class="tier-block">
+                <div class="tier-header t5-header">Tier 5</div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔺 High T5</div>
+                    <div class="sub-tier-label">High Tier 5</div>
                     <div class="player-pool">
                         <div class="player-tag">PWL14</div>
                         <div class="player-tag">esper</div>
@@ -357,11 +437,11 @@
                         <div class="player-tag">Soviet</div>
                         <div class="player-tag">watermonkey</div>
                         <div class="player-tag">jinsenx</div>
-                        <div class="player-tag">clearkoko</div>
+                        <div class="player-tag" style="margin-right:0;">clearkoko</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔸 Mid T5</div>
+                    <div class="sub-tier-label">Mid Tier 5</div>
                     <div class="player-pool">
                         <div class="player-tag">pondy</div>
                         <div class="player-tag">Anton</div>
@@ -380,7 +460,7 @@
                     </div>
                 </div>
                 <div class="sub-tier-row">
-                    <div class="sub-tier-label">🔻 Low T5</div>
+                    <div class="sub-tier-label">Low Tier 5</div>
                     <div class="player-pool">
                         <div class="player-tag">Orange</div>
                         <div class="player-tag">luwai</div>
@@ -419,9 +499,39 @@
             }
         }
 
+        function playSwooshSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
+                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.65);
+            } catch(e) {
+                console.log("Audio failed to run");
+            }
+        }
+
         function playPopSound() {
             try {
-                initAudio();
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 
@@ -438,20 +548,41 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.04);
             } catch(e) {
-                console.log("Audio contextual trigger failed");
+                console.log("Audio failed to run");
             }
         }
 
+        function activateDashboard() {
+            initAudio();
+            
+            // Hide the blocker screen smoothly
+            const gate = document.getElementById('audio-gate');
+            gate.style.opacity = '0';
+            gate.style.visibility = 'hidden';
+            
+            // Trigger animation classes
+            document.body.classList.add('revealed');
+            
+            // Fire the entrance swoosh
+            playSwooshSound();
+        }
+
+        // Add Hover Audio listeners and physical hardware vibration signals
         document.querySelectorAll('.player-tag').forEach(item => {
             item.addEventListener('mouseenter', () => {
-                playPopSound();
+                if (audioCtx) {
+                    playPopSound();
+                }
                 if (navigator.vibrate) {
-                    navigator.vibrate(12);
+                    navigator.vibrate(12); // Short pulse
                 }
             });
             
+            // Also play on mobile touch taps
             item.addEventListener('touchstart', () => {
-                playPopSound();
+                if (audioCtx) {
+                    playPopSound();
+                }
                 if (navigator.vibrate) {
                     navigator.vibrate(15);
                 }
