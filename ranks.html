@@ -67,10 +67,7 @@
         .ladder-grid div:nth-child(2) .ladder-row:nth-child(9) { animation-delay: 0.95s; }
 
         @keyframes introReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-banner {
@@ -94,10 +91,9 @@
         
         .podium-card { 
             position: relative;
-            background: rgba(10, 14, 26, 0.85); 
             border: 1px solid rgba(255,255,255,0.06); 
             border-radius: 12px; 
-            padding: 1.5rem 1rem; 
+            padding: 1.8rem 1rem; 
             text-align: center; 
             backdrop-filter: blur(10px);
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
@@ -106,60 +102,92 @@
             -webkit-tap-highlight-color: transparent;
         }
         
-        .podium-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.20; 
-            z-index: 1;
-            transition: opacity 0.2s ease;
-        }
-
-        .podium-card:hover .podium-bg { opacity: 0.35; }
-        .podium-content { position: relative; z-index: 2; }
-
         .podium-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
         }
-        .p-1 { border-color: #eab308; order: 2; }
-        .p-2 { border-color: #cbd5e1; order: 1; }
-        .p-3 { border-color: #b45309; order: 3; }
-        .p-1:hover { border-color: #fde047; box-shadow: 0 0 15px rgba(234, 179, 8, 0.2); }
-        .p-2:hover { border-color: #f8fafc; box-shadow: 0 0 15px rgba(203, 213, 225, 0.2); }
-        .p-3:hover { border-color: #d97706; box-shadow: 0 0 15px rgba(180, 83, 9, 0.2); }
 
-        .rank-num { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
-        .p-1 .rank-num { color: #eab308; }
-        .p-2 .rank-num { color: #cbd5e1; }
-        .p-3 .rank-num { color: #b45309; }
-        .podium-name { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; }
+        /* Unique Themes for Podium Banners (Rank 1, 2, 3) */
+        .p-1 { 
+            background: linear-gradient(180deg, rgba(234, 179, 8, 0.15) 0%, rgba(10, 14, 26, 0.9) 80%);
+            border-color: rgba(234, 179, 8, 0.4); 
+            order: 2; 
+        }
+        .p-2 { 
+            background: linear-gradient(180deg, rgba(203, 213, 225, 0.12) 0%, rgba(10, 14, 26, 0.9) 80%);
+            border-color: rgba(203, 213, 225, 0.3); 
+            order: 1; 
+        }
+        .p-3 { 
+            background: linear-gradient(180deg, rgba(180, 83, 9, 0.15) 0%, rgba(10, 14, 26, 0.9) 80%);
+            border-color: rgba(180, 83, 9, 0.3); 
+            order: 3; 
+        }
+
+        .p-1:hover { border-color: #fde047; box-shadow: 0 0 20px rgba(234, 179, 8, 0.3); }
+        .p-2:hover { border-color: #f8fafc; box-shadow: 0 0 20px rgba(203, 213, 225, 0.2); }
+        .p-3:hover { border-color: #d97706; box-shadow: 0 0 20px rgba(180, 83, 9, 0.25); }
+
+        .rank-num { font-size: 2.4rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .p-1 .rank-num { color: #eab308; text-shadow: 0 0 10px rgba(234, 179, 8, 0.4); }
+        .p-2 .rank-num { color: #cbd5e1; text-shadow: 0 0 10px rgba(203, 213, 225, 0.3); }
+        .p-3 .rank-num { color: #b45309; text-shadow: 0 0 10px rgba(180, 83, 9, 0.4); }
+        .podium-name { font-size: 1.15rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
         .ladder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         
         .ladder-row { 
-            background: rgba(10, 14, 26, 0.8); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
             border-radius: 8px; 
-            padding: 0.8rem 1.2rem; 
+            padding: 0.9rem 1.2rem; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s ease, background-color 0.15s ease;
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.15s ease, box-shadow 0.15s ease;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
         }
         .ladder-row:hover {
             transform: scale(1.03);
-            border-color: rgba(56, 189, 248, 0.4);
-            background: rgba(15, 23, 42, 0.9);
         }
-        .ladder-rank { font-weight: 800; font-size: 1rem; color: #38bdf8; }
-        .ladder-name { font-size: 0.95rem; color: #cbd5e1; transition: color 0.15s ease; }
+
+        /* --- Custom Unique Row Banners --- */
+        
+        /* Rank 4-5: Master Tier (Deep Crimson Horizon) */
+        .r-master {
+            background: linear-gradient(90deg, rgba(225, 29, 72, 0.12) 0%, rgba(10, 14, 26, 0.85) 100%);
+            border: 1px solid rgba(225, 29, 72, 0.25);
+        }
+        .r-master:hover {
+            border-color: rgba(225, 29, 72, 0.6);
+            box-shadow: 0 0 12px rgba(225, 29, 72, 0.2);
+        }
+        .r-master .ladder-rank { color: #f43f5e; text-shadow: 0 0 8px rgba(244, 63, 94, 0.4); }
+
+        /* Rank 6-10: Diamond Tier (Electric Cyan Horizon) */
+        .r-diamond {
+            background: linear-gradient(90deg, rgba(6, 182, 212, 0.1) 0%, rgba(10, 14, 26, 0.85) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .r-diamond:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+        }
+        .r-diamond .ladder-rank { color: #22d3ee; text-shadow: 0 0 8px rgba(34, 211, 238, 0.4); }
+
+        /* Rank 11-20: Platinum Tier (Amethyst Violet Horizon) */
+        .r-platinum {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.08) 0%, rgba(10, 14, 26, 0.85) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .r-platinum:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
+        }
+        .r-platinum .ladder-rank { color: #a78bfa; text-shadow: 0 0 8px rgba(167, 139, 250, 0.3); }
+
+
+        .ladder-rank { font-weight: 800; font-size: 1rem; }
+        .ladder-name { font-size: 0.95rem; color: #cbd5e1; transition: color 0.15s ease; font-weight: 600; }
         .ladder-row:hover .ladder-name { color: #ffffff; }
 
         @media (max-width: 650px) {
@@ -175,50 +203,53 @@
     </nav>
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Ranks</h1></div>
+        
+        <!-- Top 3 Podium (Rank 1, 2, 3 Unique Top Glows) -->
         <div class="podium-section">
             <div class="podium-card p-2" onclick="handleInteraction(event)">
-                <div class="podium-bg" style="background-image: url('second.jpg');"></div>
-                <div class="podium-content">
-                    <div class="rank-num">#2</div>
-                    <div class="podium-name">foreverpawani</div>
-                </div>
+                <div class="rank-num">#2</div>
+                <div class="podium-name">foreverpawani</div>
             </div>
             <div class="podium-card p-1" onclick="handleInteraction(event)">
-                <div class="podium-bg" style="background-image: url('first.jpg');"></div>
-                <div class="podium-content">
-                    <div class="rank-num">#1</div>
-                    <div class="podium-name">Shuljo</div>
-                </div>
+                <div class="rank-num">#1</div>
+                <div class="podium-name">Shuljo</div>
             </div>
             <div class="podium-card p-3" onclick="handleInteraction(event)">
-                <div class="podium-bg" style="background-image: url('third.jpg');"></div>
-                <div class="podium-content">
-                    <div class="rank-num">#3</div>
-                    <div class="podium-name">mmishi</div>
-                </div>
+                <div class="rank-num">#3</div>
+                <div class="podium-name">mmishi</div>
             </div>
         </div>
+
+        <!-- Custom Banner Rows -->
         <div class="ladder-grid">
+            <!-- Left Column -->
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#4</span><span class="ladder-name">mattie</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#5</span><span class="ladder-name">Percy</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#7</span><span class="ladder-name">Aion</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#8</span><span class="ladder-name">ryan</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#10</span><span class="ladder-name">poney</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#11</span><span class="ladder-name">sin</span></div>
+                <!-- Rank 4-5 (Crimson Master Banners) -->
+                <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#4</span><span class="ladder-name">mattie</span></div>
+                <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#5</span><span class="ladder-name">Percy</span></div>
+                
+                <!-- Rank 6-10 (Cyan Diamond Banners) -->
+                <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#6</span><span class="ladder-name">Bonekoko</span></div>
+                <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#7</span><span class="ladder-name">Aion</span></div>
+                <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#8</span><span class="ladder-name">ryan</span></div>
+                <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#9</span><span class="ladder-name">rastaclat</span></div>
+                <div class="ladder-row r-diamond" onclick="handleInteraction(event)"><span class="ladder-rank">#10</span><span class="ladder-name">poney</span></div>
+                
+                <!-- Rank 11-20 (Violet Platinum Banners) -->
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#11</span><span class="ladder-name">sin</span></div>
             </div>
+            
+            <!-- Right Column -->
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
-                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz</span></div>
             </div>
         </div>
     </div>
