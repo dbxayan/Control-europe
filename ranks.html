@@ -13,6 +13,7 @@
             background-image: linear-gradient(rgba(4, 6, 12, 0.93), rgba(4, 6, 12, 0.93));
             color: #ffffff;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -33,6 +34,46 @@
         .nav-link:hover { color: #ffffff; }
 
         .wrapper { max-width: 850px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+        /* --- Intro Animation States --- */
+        .hero-banner, .podium-card, .ladder-row {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: introReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Staggered load delays so they cascade smoothly */
+        .hero-banner { animation-delay: 0.1s; }
+        .p-2 { animation-delay: 0.25s; }
+        .p-1 { animation-delay: 0.35s; }
+        .p-3 { animation-delay: 0.45s; }
+        
+        /* Delays for the list rows */
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(1) { animation-delay: 0.5s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(2) { animation-delay: 0.55s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(3) { animation-delay: 0.6s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(4) { animation-delay: 0.65s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(5) { animation-delay: 0.7s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(6) { animation-delay: 0.75s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(7) { animation-delay: 0.8s; }
+        .ladder-grid div:nth-child(1) .ladder-row:nth-child(8) { animation-delay: 0.85s; }
+        
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(1) { animation-delay: 0.55s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(2) { animation-delay: 0.6s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(3) { animation-delay: 0.65s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(4) { animation-delay: 0.7s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(5) { animation-delay: 0.75s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(6) { animation-delay: 0.8s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(7) { animation-delay: 0.85s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(8) { animation-delay: 0.9s; }
+        .ladder-grid div:nth-child(2) .ladder-row:nth-child(9) { animation-delay: 0.95s; }
+
+        @keyframes introReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .hero-banner {
             width: 100%;
@@ -180,7 +221,7 @@
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan</span></div>
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas</span></div>
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#15</span><span class="ladder-name">imesium</span></div>
-                <div class="ladder-row" onclick="playPop()"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
+                <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy</span></div>
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu</span></div>
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde</span></div>
                 <div class="ladder-row" onclick="handleInteraction(event)"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden</span></div>
@@ -192,16 +233,54 @@
     <script>
         let audioCtx = null;
 
-        // PC Synthetic Click Effect
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Cinematic Entry Swoosh Sound
+        function playSwooshSound() {
+            try {
+                initAudio();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'triangle';
+                // Starts low, swooshes high, drops out smoothly
+                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
+                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15); // Fade in fast
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6); // Long fade out
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.65);
+            } catch(e) {
+                console.log("Audio skipped");
+            }
+        }
+
+        // PC Hover Tick Sound
         function playPopSound() {
             try {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-
+                initAudio();
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 
@@ -209,7 +288,7 @@
                 osc.frequency.setValueAtTime(500, audioCtx.currentTime);
                 osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.03);
                 
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime); // Soft mix volume
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
                 
                 osc.connect(gain);
@@ -222,19 +301,24 @@
             }
         }
 
-        // Handles Taps on Mobile (Vibration)
         function handleInteraction(e) {
             if (navigator.vibrate) {
                 navigator.vibrate(15);
             }
         }
 
-        // Handles Hovers on PC (Plays Sound)
+        // Listeners for PC hovers
         document.querySelectorAll('.podium-card, .ladder-row').forEach(item => {
             item.addEventListener('mouseenter', () => {
-                // Ensure audio triggers for actual computer mice hovers
                 playPopSound();
             });
+        });
+
+        // Trigger swoosh on page load!
+        // Note: Modern browsers require a click/tap anywhere on the screen first 
+        // to unmute page-load media, but it will fire instantly on transitions.
+        window.addEventListener('DOMContentLoaded', () => {
+            playSwooshSound();
         });
     </script>
 </body>
