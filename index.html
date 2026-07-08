@@ -16,6 +16,39 @@
             overflow-x: hidden;
         }
 
+        /* --- Audio Activation Screen --- */
+        #audio-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #04060c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .gate-btn {
+            background: linear-gradient(135deg, #38bdf8, #0369a1);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .gate-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+        }
+
         .navbar {
             background: rgba(4, 6, 12, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -39,19 +72,20 @@
         .hero-banner, .tier-block {
             opacity: 0;
             transform: translateY(30px);
-            animation: introReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .hero-banner { animation-delay: 0.1s; }
-        .tier-block:nth-child(1) { animation-delay: 0.25s; }
-        .tier-block:nth-child(2) { animation-delay: 0.35s; }
-        .tier-block:nth-child(3) { animation-delay: 0.45s; }
-        .tier-block:nth-child(4) { animation-delay: 0.55s; }
-        .tier-block:nth-child(5) { animation-delay: 0.65s; }
-
-        @keyframes introReveal {
-            to { opacity: 1; transform: translateY(0); }
+        .revealed .hero-banner, .revealed .tier-block {
+            opacity: 1;
+            transform: translateY(0);
         }
+
+        .hero-banner { transition-delay: 0.1s; }
+        .tier-block:nth-child(1) { transition-delay: 0.2s; }
+        .tier-block:nth-child(2) { transition-delay: 0.3s; }
+        .tier-block:nth-child(3) { transition-delay: 0.4s; }
+        .tier-block:nth-child(4) { transition-delay: 0.5s; }
+        .tier-block:nth-child(5) { transition-delay: 0.6s; }
 
         .hero-banner {
             width: 100%;
@@ -173,12 +207,17 @@
 </head>
 <body>
 
+    <!-- Access Gate to Enable Browser Audio -->
+    <div id="audio-gate">
+        <button class="gate-btn" onclick="activateDashboard()">Enter Dashboard</button>
+    </div>
+
     <nav class="navbar">
         <a href="index.html" class="nav-link active">[ Tiers ]</a>
         <a href="ranks.html" class="nav-link">[ Ranks (1-20) ]</a>
     </nav>
 
-    <div class="wrapper">
+    <div class="wrapper" id="main-content">
         <div class="hero-banner">
             <h1>Tier Standings</h1>
         </div>
@@ -195,15 +234,15 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Mid Tier 1</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">shuljo</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">pawani</div>
+                        <div class="player-tag">shuljo</div>
+                        <div class="player-tag">pawani</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Low Tier 1</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">Mattie</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">mvv</div>
+                        <div class="player-tag">Mattie</div>
+                        <div class="player-tag">mvv</div>
                     </div>
                 </div>
             </div>
@@ -214,23 +253,23 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">High Tier 2</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">Percy</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">bonekoko</div>
+                        <div class="player-tag">Percy</div>
+                        <div class="player-tag">bonekoko</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Mid Tier 2</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">aion</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Ryan</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">rastaclat</div>
+                        <div class="player-tag">aion</div>
+                        <div class="player-tag">Ryan</div>
+                        <div class="player-tag">rastaclat</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Low Tier 2</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">sin</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">changv</div>
+                        <div class="player-tag">sin</div>
+                        <div class="player-tag">changv</div>
                     </div>
                 </div>
             </div>
@@ -241,27 +280,27 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">High Tier 3</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">infantrator</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">sinan</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">inimeg</div>
+                        <div class="player-tag">infantrator</div>
+                        <div class="player-tag">sinan</div>
+                        <div class="player-tag">inimeg</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Mid Tier 3</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">poney</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">bondt</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">imesium</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">real flash</div>
+                        <div class="player-tag">poney</div>
+                        <div class="player-tag">bondt</div>
+                        <div class="player-tag">imesium</div>
+                        <div class="player-tag">real flash</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Low Tier 3</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">Fshy</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Ananas</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Jayden</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">kolz</div>
+                        <div class="player-tag">Fshy</div>
+                        <div class="player-tag">Ananas</div>
+                        <div class="player-tag">Jayden</div>
+                        <div class="player-tag">kolz</div>
                     </div>
                 </div>
             </div>
@@ -272,42 +311,42 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">High Tier 4</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">Adam</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Ayden Ahmed</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Brit</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">rimu</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">nav</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Alexander</div>
+                        <div class="player-tag">Adam</div>
+                        <div class="player-tag">Ayden Ahmed</div>
+                        <div class="player-tag">Brit</div>
+                        <div class="player-tag">rimu</div>
+                        <div class="player-tag">nav</div>
+                        <div class="player-tag">Alexander</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Mid Tier 4</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">babatunde</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">nexus</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">milk</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">104</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Wazza</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">kinezous</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Xscape</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">bricks</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Walq</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">exify</div>
+                        <div class="player-tag">babatunde</div>
+                        <div class="player-tag">nexus</div>
+                        <div class="player-tag">milk</div>
+                        <div class="player-tag">104</div>
+                        <div class="player-tag">Wazza</div>
+                        <div class="player-tag">kinezous</div>
+                        <div class="player-tag">Xscape</div>
+                        <div class="player-tag">bricks</div>
+                        <div class="player-tag">Walq</div>
+                        <div class="player-tag">exify</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Low Tier 4</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">pineapple</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">mango</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">vini</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Gus</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">raaaz</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">floof</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">togoso</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">MBXD</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Sanji</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">tr1plz</div>
+                        <div class="player-tag">pineapple</div>
+                        <div class="player-tag">mango</div>
+                        <div class="player-tag">vini</div>
+                        <div class="player-tag">Gus</div>
+                        <div class="player-tag">raaaz</div>
+                        <div class="player-tag">floof</div>
+                        <div class="player-tag">togoso</div>
+                        <div class="player-tag">MBXD</div>
+                        <div class="player-tag">Sanji</div>
+                        <div class="player-tag">tr1plz</div>
                     </div>
                 </div>
             </div>
@@ -318,57 +357,168 @@
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">High Tier 5</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">PWL14</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">esper</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">ido</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">koloo</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">vortex</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Saif</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Resenhamaster</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">greed</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Soviet</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">watermonkey</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">jinsenx</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">clearkoko</div>
+                        <div class="player-tag">PWL14</div>
+                        <div class="player-tag">esper</div>
+                        <div class="player-tag">ido</div>
+                        <div class="player-tag">koloo</div>
+                        <div class="player-tag">vortex</div>
+                        <div class="player-tag">Saif</div>
+                        <div class="player-tag">Resenhamaster</div>
+                        <div class="player-tag">greed</div>
+                        <div class="player-tag">Soviet</div>
+                        <div class="player-tag">watermonkey</div>
+                        <div class="player-tag">jinsenx</div>
+                        <div class="player-tag" style="margin-right:0;">clearkoko</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Mid Tier 5</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">pondy</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Anton</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">cubex</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Zororoblox</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">krainy</div>
-                        <div class="player-tag" onclick="event)">asteroid</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">harry</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Idol</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">chama</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Aen</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">pigey</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">black_death</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Anas</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">jacob</div>
+                        <div class="player-tag">pondy</div>
+                        <div class="player-tag">Anton</div>
+                        <div class="player-tag">cubex</div>
+                        <div class="player-tag">Zororoblox</div>
+                        <div class="player-tag">krainy</div>
+                        <div class="player-tag">asteroid</div>
+                        <div class="player-tag">harry</div>
+                        <div class="player-tag">Idol</div>
+                        <div class="player-tag">chama</div>
+                        <div class="player-tag">Aen</div>
+                        <div class="player-tag">pigey</div>
+                        <div class="player-tag">black_death</div>
+                        <div class="player-tag">Anas</div>
+                        <div class="player-tag">jacob</div>
                     </div>
                 </div>
                 <div class="sub-tier-row">
                     <div class="sub-tier-label">Low Tier 5</div>
                     <div class="player-pool">
-                        <div class="player-tag" onclick="handleInteraction(event)">Orange</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">luwai</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">pibble</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">mrpibbidy</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">phone</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">raga</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">flande</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">4litooo</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">power</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">flamey</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">hudi</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">unvel</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">panos</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">ginglala</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">david</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">olinkian</div>
-                        <div class="player-tag" onclick="handleInteraction(event)">Rgpm</div>
-                   
+                        <div class="player-tag">Orange</div>
+                        <div class="player-tag">luwai</div>
+                        <div class="player-tag">pibble</div>
+                        <div class="player-tag">mrpibbidy</div>
+                        <div class="player-tag">phone</div>
+                        <div class="player-tag">raga</div>
+                        <div class="player-tag">flande</div>
+                        <div class="player-tag">4litooo</div>
+                        <div class="player-tag">power</div>
+                        <div class="player-tag">flamey</div>
+                        <div class="player-tag">hudi</div>
+                        <div class="player-tag">unvel</div>
+                        <div class="player-tag">panos</div>
+                        <div class="player-tag">ginglala</div>
+                        <div class="player-tag">david</div>
+                        <div class="player-tag">olinkian</div>
+                        <div class="player-tag">Rgpm</div>
+                        <div class="player-tag">theo</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSwooshSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.15);
+                osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.6);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.2);
+                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.6);
+
+                gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.65);
+            } catch(e) {
+                console.log("Audio failed to run");
+            }
+        }
+
+        function playPopSound() {
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(540, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.04);
+                
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch(e) {
+                console.log("Audio failed to run");
+            }
+        }
+
+        function activateDashboard() {
+            initAudio();
+            
+            // Hide the blocker screen smoothly
+            const gate = document.getElementById('audio-gate');
+            gate.style.opacity = '0';
+            gate.style.visibility = 'hidden';
+            
+            // Trigger animation classes
+            document.body.classList.add('revealed');
+            
+            // Fire the entrance swoosh
+            playSwooshSound();
+        }
+
+        // Add Hover Audio listeners and physical hardware vibration signals
+        document.querySelectorAll('.player-tag').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if (audioCtx) {
+                    playPopSound();
+                }
+                if (navigator.vibrate) {
+                    navigator.vibrate(12); // Short pulse
+                }
+            });
+            
+            // Also play on mobile touch taps
+            item.addEventListener('touchstart', () => {
+                if (audioCtx) {
+                    playPopSound();
+                }
+                if (navigator.vibrate) {
+                    navigator.vibrate(15);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
