@@ -44,11 +44,13 @@
 
         /* Staggered cascading load delays */
         .hero-banner { animation-delay: 0.1s; }
-        .tier-row:nth-child(2) { animation-delay: 0.25s; }
-        .tier-row:nth-child(3) { animation-delay: 0.35s; }
-        .tier-row:nth-child(4) { animation-delay: 0.45s; }
-        .tier-row:nth-child(5) { animation-delay: 0.55s; }
-        .tier-row:nth-child(6) { animation-delay: 0.65s; }
+        .tier-row:nth-child(1) { animation-delay: 0.2s; }
+        .tier-row:nth-child(2) { animation-delay: 0.28s; }
+        .tier-row:nth-child(3) { animation-delay: 0.36s; }
+        .tier-row:nth-child(4) { animation-delay: 0.44s; }
+        .tier-row:nth-child(5) { animation-delay: 0.52s; }
+        .tier-row:nth-child(6) { animation-delay: 0.6s; }
+        .tier-row:nth-child(7) { animation-delay: 0.68s; }
 
         @keyframes introReveal {
             to {
@@ -93,14 +95,18 @@
         }
 
         .tier-badge {
-            width: 90px;
+            width: 160px; /* Widened slightly to perfectly fit text like "Low Tier 5" */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: #04060c;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            padding: 1rem 0.5rem;
+            text-align: center;
         }
 
         .tier-players {
@@ -113,29 +119,21 @@
             background: rgba(15, 23, 42, 0.4);
         }
 
-        .player-tag {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 0.4rem 0.9rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #cbd5e1;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.15s ease;
+        .empty-placeholder {
+            font-size: 0.9rem;
+            color: #475569;
+            font-style: italic;
+            letter-spacing: 0.5px;
         }
 
-        .tier-row:hover .player-tag {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Tier Theme Colors */
-        .t-s { background: linear-gradient(135deg, #f43f5e, #be123c); }
-        .t-a { background: linear-gradient(135deg, #fb923c, #c2410c); }
-        .t-b { background: linear-gradient(135deg, #eab308, #a16207); }
-        .t-c { background: linear-gradient(135deg, #a855f7, #6b21a8); }
-        .t-d { background: linear-gradient(135deg, #64748b, #334155); }
+        /* Adjusted Gradient Theme Colors to match the new structure */
+        .t-high1 { background: linear-gradient(135deg, #f43f5e, #be123c); }
+        .t-mid1  { background: linear-gradient(135deg, #fb923c, #c2410c); }
+        .t-low1  { background: linear-gradient(135deg, #eab308, #a16207); }
+        .t-low2  { background: linear-gradient(135deg, #22c55e, #15803d); }
+        .t-low3  { background: linear-gradient(135deg, #38bdf8, #0369a1); }
+        .t-low4  { background: linear-gradient(135deg, #a855f7, #6b21a8); }
+        .t-low5  { background: linear-gradient(135deg, #64748b, #334155); }
     </style>
 </head>
 <body>
@@ -146,56 +144,63 @@
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Tiers</h1></div>
         <div class="tier-container">
-            <!-- S Tier -->
+            
+            <!-- High Tier 1 -->
             <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-s">S</div>
+                <div class="tier-badge t-high1">High Tier 1</div>
                 <div class="tier-players">
-                    <span class="player-tag">Shuljo</span>
-                    <span class="player-tag">foreverpawani</span>
-                    <span class="player-tag">mmishi</span>
+                    <span class="empty-placeholder">TBD</span>
                 </div>
             </div>
-            <!-- A Tier -->
+
+            <!-- Mid Tier 1 -->
             <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-a">A</div>
+                <div class="tier-badge t-mid1">Mid Tier 1</div>
                 <div class="tier-players">
-                    <span class="player-tag">mattie</span>
-                    <span class="player-tag">Percy</span>
-                    <span class="player-tag">Bonekoko</span>
+                    <span class="empty-placeholder">TBD</span>
                 </div>
             </div>
-            <!-- B Tier -->
+
+            <!-- Low Tier 1 -->
             <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-b">B</div>
+                <div class="tier-badge t-low1">Low Tier 1</div>
                 <div class="tier-players">
-                    <span class="player-tag">Aion</span>
-                    <span class="player-tag">ryan</span>
-                    <span class="player-tag">rastaclat</span>
-                    <span class="player-tag">poney</span>
+                    <span class="empty-placeholder">TBD</span>
                 </div>
             </div>
-            <!-- C Tier -->
+
+            <!-- Low Tier 2 -->
             <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-c">C</div>
+                <div class="tier-badge t-low2">Low Tier 2</div>
                 <div class="tier-players">
-                    <span class="player-tag">sin</span>
-                    <span class="player-tag">Bondt</span>
-                    <span class="player-tag">Sinan</span>
-                    <span class="player-tag">Ananas</span>
+                    <span class="empty-placeholder">TBD</span>
                 </div>
             </div>
-            <!-- D Tier -->
+
+            <!-- Low Tier 3 -->
             <div class="tier-row" onclick="handleInteraction(event)">
-                <div class="tier-badge t-d">D</div>
+                <div class="tier-badge t-low3">Low Tier 3</div>
                 <div class="tier-players">
-                    <span class="player-tag">imesium</span>
-                    <span class="player-tag">Fshy</span>
-                    <span class="player-tag">Rimu</span>
-                    <span class="player-tag">babatunde</span>
-                    <span class="player-tag">Jayden</span>
-                    <span class="player-tag">Kolz</span>
+                    <span class="empty-placeholder">TBD</span>
                 </div>
             </div>
+
+            <!-- Low Tier 4 -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-low4">Low Tier 4</div>
+                <div class="tier-players">
+                    <span class="empty-placeholder">TBD</span>
+                </div>
+            </div>
+
+            <!-- Low Tier 5 -->
+            <div class="tier-row" onclick="handleInteraction(event)">
+                <div class="tier-badge t-low5">Low Tier 5</div>
+                <div class="tier-players">
+                    <span class="empty-placeholder">TBD</span>
+                </div>
+            </div>
+
         </div>
     </div>
 
