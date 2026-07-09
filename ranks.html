@@ -58,7 +58,7 @@
             box-shadow: 0 0 20px rgba(88, 101, 242, 0.65), 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* --- Floating Side Mascots (FIXED) --- */
+        /* --- Floating Side Mascots --- */
         .side-mascot {
             position: fixed;
             top: 50%;
@@ -80,7 +80,6 @@
             animation-delay: 2s;
         }
 
-        /* Fixed animations to retain both the -50% Y centering and the float */
         @keyframes floatLeftMascot {
             0%, 100% { transform: translateY(-50%) translateY(0px); }
             50% { transform: translateY(-50%) translateY(-15px); }
@@ -237,7 +236,6 @@
             vertical-align: middle;
         }
 
-        /* --- Custom Unique Row Banners --- */
         .r-master {
             background: linear-gradient(90deg, rgba(225, 29, 72, 0.12) 0%, rgba(10, 14, 26, 0.85) 100%);
             border: 1px solid rgba(225, 29, 72, 0.25);
@@ -277,7 +275,6 @@
         .ladder-name { font-size: 1.05rem; color: #cbd5e1; transition: all 0.15s ease; font-weight: 700; letter-spacing: 0.5px; }
         .ladder-row:hover .ladder-name { color: #ffffff; }
 
-        /* Hide side images on screen sizes that are too small to avoid crowding */
         @media (max-width: 1400px) {
             .side-mascot { display: none; }
         }
@@ -299,26 +296,24 @@
         <a href="https://discord.gg/vxRjx35ytT" target="_blank" class="discord-btn">💬 Discord Server</a>
     </nav>
 
-    <img src="https://g96b.github.io/control-europe-rankings/image_56373f.png" alt="Left Mascot" class="side-mascot mascot-left">
-    <img src="https://g96b.github.io/control-europe-rankings/image_56375b.png" alt="Right Mascot" class="side-mascot mascot-right">
+    <!-- Updated Mascot Sources -->
+    <img src="1000091116-1.png" alt="Left Mascot" class="side-mascot mascot-left">
+    <img src="1000091117-1.png" alt="Right Mascot" class="side-mascot mascot-right">
 
     <div class="wrapper">
         <div class="hero-banner"><h1>Player Ranks</h1></div>
         
         <div class="podium-section">
-            <!-- Rank #2 Silver -->
             <div class="podium-card p-2" onclick="handleInteraction(event)">
                 <span class="crown" style="color: #cbd5e1;">👑</span>
                 <div class="rank-num">#2</div>
                 <div class="podium-name">foreverpawani</div>
             </div>
-            <!-- Rank #1 Gold -->
             <div class="podium-card p-1" onclick="handleInteraction(event)">
                 <span class="crown" style="color: #eab308;">👑</span>
                 <div class="rank-num">#1</div>
                 <div class="podium-name">Shuljo</div>
             </div>
-            <!-- Rank #3 Bronze -->
             <div class="podium-card p-3" onclick="handleInteraction(event)">
                 <span class="crown" style="color: #b45309;">👑</span>
                 <div class="rank-num">#3</div>
@@ -327,7 +322,6 @@
         </div>
 
         <div class="ladder-grid">
-            <!-- Left Column -->
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
                 <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#4</span><span class="ladder-name">mattie<span class="stars">⭐⭐⭐</span></span></div>
                 <div class="ladder-row r-master" onclick="handleInteraction(event)"><span class="ladder-rank">#5</span><span class="ladder-name">Percy<span class="stars">⭐⭐⭐</span></span></div>
@@ -341,11 +335,10 @@
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#11</span><span class="ladder-name">sin<span class="stars">⭐</span></span></div>
             </div>
             
-            <!-- Right Column -->
             <div style="display: flex; flex-direction: column; gap: 0.6rem;">
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#12</span><span class="ladder-name">Bondt<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#13</span><span class="ladder-name">Sinan<span class="stars">⭐</span></span></div>
-                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas<span class="stars">⭐</span></span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event).png"><span class="ladder-rank">#14</span><span class="ladder-name">Ananas<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#15</span><span class="ladder-name">imesium<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu<span class="stars">⭐</span></span></div>
