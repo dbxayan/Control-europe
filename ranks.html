@@ -58,29 +58,35 @@
             box-shadow: 0 0 20px rgba(88, 101, 242, 0.65), 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        /* --- Floating Side Mascots --- */
+        /* --- Floating Side Mascots (FIXED) --- */
         .side-mascot {
             position: fixed;
             top: 50%;
-            transform: translateY(-50%);
             width: 240px;
             height: auto;
             z-index: 10;
             pointer-events: none;
             filter: drop-shadow(0 10px 25px rgba(0,0,0,0.65));
-            animation: floatMascot 4s ease-in-out infinite;
         }
 
         .mascot-left {
             left: 30px;
+            animation: floatLeftMascot 4s ease-in-out infinite;
         }
 
         .mascot-right {
             right: 30px;
+            animation: floatRightMascot 4s ease-in-out infinite;
             animation-delay: 2s;
         }
 
-        @keyframes floatMascot {
+        /* Fixed animations to retain both the -50% Y centering and the float */
+        @keyframes floatLeftMascot {
+            0%, 100% { transform: translateY(-50%) translateY(0px); }
+            50% { transform: translateY(-50%) translateY(-15px); }
+        }
+
+        @keyframes floatRightMascot {
             0%, 100% { transform: translateY(-50%) translateY(0px); }
             50% { transform: translateY(-50%) translateY(-15px); }
         }
@@ -293,7 +299,6 @@
         <a href="https://discord.gg/vxRjx35ytT" target="_blank" class="discord-btn">💬 Discord Server</a>
     </nav>
 
-    <!-- FIXED: Links updated directly to your images so they load perfectly -->
     <img src="https://g96b.github.io/control-europe-rankings/image_56373f.png" alt="Left Mascot" class="side-mascot mascot-left">
     <img src="https://g96b.github.io/control-europe-rankings/image_56375b.png" alt="Right Mascot" class="side-mascot mascot-right">
 
@@ -345,7 +350,7 @@
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#16</span><span class="ladder-name">Fshy<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#17</span><span class="ladder-name">Rimu<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#18</span><span class="ladder-name">babatunde<span class="stars">⭐</span></span></div>
-                <div class="ladder-row r-platinum" onclick="handleInteraction(event)."><span class="ladder-rank">#19</span><span class="ladder-name">Jayden<span class="stars">⭐</span></span></div>
+                <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#19</span><span class="ladder-name">Jayden<span class="stars">⭐</span></span></div>
                 <div class="ladder-row r-platinum" onclick="handleInteraction(event)"><span class="ladder-rank">#20</span><span class="ladder-name">Kolz<span class="stars">⭐</span></span></div>
             </div>
         </div>
